@@ -8,12 +8,10 @@ class ShipTest < Minitest::Test
   end
 
   def test_it_exists
-    
     assert_instance_of Ship, @cruiser
   end
 
   def test_it_has_a_type
-
     assert_equal "Cruiser", @cruiser.type
   end
 end
