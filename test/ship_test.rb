@@ -23,7 +23,7 @@ class ShipTest < Minitest::Test
     assert_equal 3, @cruiser.health
   end
 
-  def test_it_knows_if_it_initializes_to_not_sunk
+  def test_it_knows_if_it_knows_its_sunk
     assert_equal false, @cruiser.sunk?
   end
 end
