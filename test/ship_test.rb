@@ -14,4 +14,8 @@ class ShipTest < Minitest::Test
   def test_it_has_a_type
     assert_equal "Cruiser", @cruiser.type
   end
+
+  def test_it_has_a_length
+    assert_equal 3, @cruiser.length
+  end
 end
