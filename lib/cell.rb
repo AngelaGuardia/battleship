@@ -22,4 +22,22 @@ class Cell
   def place_ship(ship_object)
     @ship = ship_object
   end
+
+  def render(show = false)
+    if (empty?)
+      if (fired_upon?)
+        "M"
+      else
+        "."
+      end
+    elsif (!empty?)
+      if (show)
+        "S"
+      elsif (@ship.sunk?)
+        "X"
+      else
+        "."
+      end
+    end
+  end
 end
