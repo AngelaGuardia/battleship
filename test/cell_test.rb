@@ -43,6 +43,8 @@ class CellTest < Minitest::Test
 
   def test_it_can_be_fired_upon_while_empty
     @cell1.fire_upon
+
+    assert_equal true, @cell1.fired_upon?
   end
 
   def test_the_ship_health_should_decrement_when_fired_upon
