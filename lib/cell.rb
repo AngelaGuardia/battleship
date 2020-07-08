@@ -2,11 +2,16 @@ class Cell
   attr_reader :coordinate, :ship
   def initialize(coordinate)
     @coordinate = coordinate
-    @ship
+    @ship = nil
+    @hit = false
   end
 
   def empty?
-    return @ship == nil
+    @ship == nil
+  end
+
+  def fired_upon?
+    @hit
   end
 
   def place_ship(ship)
