@@ -25,4 +25,8 @@ class CellTest < Minitest::Test
   def test_the_ship_attribute_is_nil_by_default
     assert_nil @cell1.ship
   end
+
+  def test_it_should_be_empty_by_default
+    assert_equal true, @cell1.empty?
+  end
 end
