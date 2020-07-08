@@ -21,4 +21,8 @@ class CellTest < Minitest::Test
   def test_it_can_have_a_different_coordinate
     assert_equal "A2", @cell2.coordinate
   end
+
+  def test_the_ship_attribute_is_nil_by_default
+    assert_nil @cell1.ship
+  end
 end
