@@ -8,4 +8,8 @@ class Cell
   def empty?
     return @ship == nil
   end
+
+  def place_ship(ship)
+    @ship = ship
+  end
 end
