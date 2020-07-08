@@ -6,6 +6,7 @@ require './lib/cell'
 class CellTest < Minitest::Test
   def setup
     @cell1 = Cell.new("B4")
+    @cell2 = Cell.new("A2")
     @cruiser = Ship.new("Cruiser", 3)
   end
 
@@ -15,5 +16,9 @@ class CellTest < Minitest::Test
 
   def test_it_has_a_coordinate
     assert_equal "B4", @cell1.coordinate
+  end
+
+  def test_it_can_have_a_different_coordinate
+    assert_equal "A2", @cell2.coordinate
   end
 end
