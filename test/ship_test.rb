@@ -17,7 +17,7 @@ class ShipTest < Minitest::Test
   end
 
   def test_it_can_have_a_different_type
-    assert_equal "Destroyer", @destoryer.type
+    assert_equal "Destroyer", @destroyer.type
   end
 
   def test_it_has_a_length
@@ -30,6 +30,10 @@ class ShipTest < Minitest::Test
 
   def test_it_has_health
     assert_equal 3, @cruiser.health
+  end
+
+  def test_it_can_have_a_different_health
+    assert_equal 2, @destroyer.health
   end
 
   def test_it_can_get_hit
