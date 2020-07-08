@@ -26,18 +26,18 @@ class CellTest < Minitest::Test
     assert_nil(@cell1.ship)
   end
 
-  def test_it_should_be_empty_by_default
+  def test_it_is_empty_by_default
     assert_equal(true, @cell1.empty?)
   end
 
-  def test_it_should_be_able_to_have_a_ship_placed_on_it
+  def test_it_can_have_a_ship_placed_on_it
     @cell1.place_ship(@cruiser)
 
     assert_equal(@cruiser, @cell1.ship)
     assert_equal(false, @cell1.empty?)
   end
 
-  def test_it_should_not_have_been_fired_upon_by_default
+  def test_it_is_not_fired_upon_by_default
     assert_equal(false, @cell1.fired_upon?)
   end
 
@@ -47,43 +47,46 @@ class CellTest < Minitest::Test
     assert_equal true, @cell1.fired_upon?
   end
 
-  def test_the_ship_health_should_decrement_when_fired_upon
+  def test_the_ship_health_decrements_when_fired_upon
     @cell1.place_ship(@cruiser)
     @cell1.fire_upon
 
     assert_equal(2, @cell1.ship.health)
   end
 
-  def test_it_should_know_that_it_has_been_fired_upon
+  def test_it_knows_that_it_has_been_fired_upon
     @cell1.place_ship(@cruiser)
     @cell1.fire_upon
 
     assert_equal(true, @cell1.fired_upon?)
   end
 
-  def test_it_should_render_a_period_if_empty_and_not_fired_upon
+  def test_it_renders_a_period_if_empty_and_not_fired_upon
     assert_equal(".", @cell1.render)
   end
 
-  def test_it_should_render_a_M_if_empty_and_fired_upon
+  def test_it_renders_a_M_if_empty_and_fired_upon
     @cell1.fire_upon
 
     assert_equal("M", @cell1.render)
   end
 
-  def test_it_should_render_a_period_if_occupied_but_optional_argument_not_provided
+  def test_it_renders_a_period_if_occupied_but_optional_argument_not_provided
     @cell1.place_ship(@cruiser)
 
     assert_equal(".", @cell1.render)
   end
 
-  def test_it_should_render_a_S_if_occupied_and_optional_argument_provided
+  def test_it_renders_S_if_occupied_and_optional_argument_provided
     @cell1.place_ship(@cruiser)
 
     assert_equal("S", @cell1.render(true))
   end
 
-  def test_it_should_render_a_X_if_occupied_and_ship_sunk
+  def test_it_doesnt_render_S_if_not_occupied_and_opt_arg_provided
+  end
+
+  def test_it_renders_a_X_if_occupied_and_ship_sunk
     @cell1.place_ship(@cruiser)
     @cell1.ship.hit
     @cell1.ship.hit
