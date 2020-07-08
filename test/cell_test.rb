@@ -41,6 +41,10 @@ class CellTest < Minitest::Test
     assert_equal(false, @cell1.fired_upon?)
   end
 
+  def test_fire_upon_works_if_there_is_no_ship
+    @cell1.fire_upon
+  end
+
   def test_the_ship_health_should_decrement_when_fired_upon
     @cell1.place_ship(@cruiser)
     @cell1.fire_upon
