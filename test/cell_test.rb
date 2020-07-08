@@ -54,4 +54,35 @@ class CellTest < Minitest::Test
 
     assert_equal(true, @cell1.fired_upon?)
   end
+
+  def test_it_should_render_a_period_if_empty_and_not_fired_upon
+    assert_equal(".", @cell1.render)
+  end
+
+  def test_it_should_render_a_M_if_empty_and_fired_upon
+    @cell1.fire_upon
+
+    assert_equal("M", @cell1.render)
+  end
+
+  def test_it_should_render_a_period_if_occupied_but_optional_argument_not_provided
+    @cell1.place_ship(@cruiser)
+
+    assert_equal(".", @cell1.render)
+  end
+
+  def test_it_should_render_a_S_if_occupied_and_optional_argument_provided
+    @cell1.place_ship(@cruiser)
+
+    assert_equal("S", @cell1.render(true))
+  end
+
+  def test_it_should_render_a_X_if_occupied_and_ship_sunk
+    @cell1.place_ship(@cruiser)
+    @cell1.ship.hit
+    @cell1.ship.hit
+    @cell1.ship.hit
+
+    assert_equal("X", @cell1.render)
+  end
 end
