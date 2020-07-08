@@ -43,11 +43,15 @@ class CellTest < Minitest::Test
 
   def test_the_ship_health_should_decrement_when_fired_upon
     @cell1.place_ship(@cruiser)
-
-    assert_equal(3, @cell1.ship.health)
-
     @cell1.fire_upon
 
     assert_equal(2, @cell1.ship.health)
+  end
+
+  def test_it_should_know_that_it_has_been_fired_upon
+    @cell1.place_ship(@cruiser)
+    @cell1.fire_upon
+
+    assert_equal(true, @cell1.fired_upon?)
   end
 end
