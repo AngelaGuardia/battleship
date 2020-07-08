@@ -19,7 +19,7 @@ class Cell
     @ship.hit if @ship
   end
 
-  def place_ship(ship)
-    @ship = ship
+  def place_ship(ship_object)
+    @ship = ship_object
   end
 end
