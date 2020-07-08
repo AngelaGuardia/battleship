@@ -23,21 +23,51 @@ class Cell
     @ship = ship_object
   end
 
-  def render(show = false)
-    if (empty?)
-      if (fired_upon?)
+  def render(reveal_ship = false)
+    if empty?
+      if fired_upon?
         "M"
       else
         "."
       end
-    elsif (!empty?)
-      if (show)
-        "S"
-      elsif (@ship.sunk?)
+    else
+      if @ship.sunk?
         "X"
+      elsif @fired_upon
+        "H"
+      elsif reveal_ship
+        "S"
       else
         "."
       end
     end
   end
+
+  # def render3(reveal = false)
+  #   if !fired_upon?
+  #     require 'pry'; binding.pry
+  #     "." unless reveal_ship(reveal)
+  #   elsif empty?
+  #     "M"
+  #   end
+  # end
+  #
+  # def reveal_ship(reveal)
+  #   return "S" if reveal && !empty?
+  # end
+  #
+  # def render2(reveal_ship = false)
+  #   if !fired_upon?
+  #     if reveal_ship
+  #       "S"
+  #     end
+  #     "."
+  #   elsif empty?
+  #     "M"
+  #   elsif @ship.sunk?
+  #     "X"
+  #   else
+  #     "H"
+  #   end
+  # end
 end
