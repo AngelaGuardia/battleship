@@ -36,4 +36,8 @@ class CellTest < Minitest::Test
     assert_equal(@cruiser, @cell1.ship)
     assert_equal(false, @cell1.empty?)
   end
+
+  def test_it_should_not_have_been_fired_upon_by_default
+    assert_equal(false, @cell1.fired_upon?)
+  end
 end
