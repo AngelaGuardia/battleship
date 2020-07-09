@@ -50,7 +50,7 @@ class Board
       consecutive_row_coord == coordinates
     elsif on_same_column?(coordinates)
       consecutive_row_letters == coordinates.map { |coordinate| coordinate[0] }
-    # else it is diagonal or some other placement
+      # else it is diagonal or some other placement
     end
   end
 
@@ -69,4 +69,24 @@ class Board
       @cells[coordinate].place_ship(ship)
     end
   end
+
+  def render(reveal_ship = false)
+    board_string = ""
+    board_string += "  "
+    ("1"..@width.to_s).to_a.each { |num| board_string += num + " " }
+    board_string += "\n"
+    @cells.each do |coord, cell|
+      if coord[1] == "1"
+        board_string += coord[0] + " "
+        board_string += cell.render(reveal_ship) + " "
+      elsif coord[1] == @width.to_s
+        board_string += cell.render(reveal_ship) + " "
+        board_string += "\n"
+      else
+        board_string += cell.render(reveal_ship) + " "
+      end
+    end
+    board_string
+  end
+
 end
