@@ -57,4 +57,10 @@ class Board
     column_number = coordinates[0][1]
     coordinates.all? { |coordinate| coordinate[1] == column_number }
   end
+
+  def place(ship, coordinates)
+    coordinates.each do |coordinate|
+      @cells[coordinate].place_ship(ship)
+    end
+  end
 end

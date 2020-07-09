@@ -112,5 +112,14 @@ class BoardTest < Minitest::Test
   end
 
   def test_it_can_place_ships_on_its_cells
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+    cell_1 = @board.cells["A1"]
+    cell_2 = @board.cells["A2"]
+    cell_3 = @board.cells["A3"]
+
+    assert_instance_of Ship, cell_1.ship
+    assert_instance_of Ship, cell_2.ship
+    assert_instance_of Ship, cell_3.ship
+    assert_equal true, cell_3.ship == cell_2.ship
   end
 end
