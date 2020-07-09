@@ -122,4 +122,10 @@ class BoardTest < Minitest::Test
     assert_instance_of Ship, cell_3.ship
     assert_equal true, cell_3.ship == cell_2.ship
   end
+
+  def test_it_knows_if_placed_ships_overlap
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+    assert_equal true, @board.overlapping_coordinates?(["A1", "B1"])
+    assert_equal false, @board.overlapping_coordinates?(["C1", "D1"])
+  end
 end

@@ -37,6 +37,12 @@ class Board
     ship.length == coordinates.length
   end
 
+  def overlapping_coordinates?(coordinates)
+    coordinates.any? do |coordinate|
+      @cells[coordinate].ship.class == Ship
+    end
+  end
+
   def consecutive_coordinates?(ship, coordinates)
     consecutive_row_coord = (coordinates.first..coordinates.last).to_a
     consecutive_row_letters = (coordinates.first[0]..coordinates.last[0]).to_a
