@@ -26,7 +26,7 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-    valid_coordinate?(coordinates) && valid_length?(ship, coordinates) && consecutive_coordinates?(ship, coordinates)
+    valid_coordinate?(coordinates) && valid_length?(ship, coordinates) && !overlapping_coordinates?(coordinates) && consecutive_coordinates?(ship, coordinates)
   end
 
   def valid_coordinate?(coordinates)
