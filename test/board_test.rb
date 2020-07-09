@@ -7,7 +7,8 @@ require './lib/board'
 class BoardTest < Minitest::Test
   def setup
     @board = Board.new()
-    #require 'pry'; binding.pry
+    @cruiser = Ship.new("Cruiser", 3)
+    @submarine = Ship.new("Submarine", 2)
   end
 
   def test_it_exists
@@ -73,4 +74,14 @@ class BoardTest < Minitest::Test
     assert_equal size, board_cells.length
     assert_instance_of Cell, board_cell_values[0]
   end
+
+  def test_it_knows_a_ship_placement_has_a_valid_length
+    assert_equal false, @board.valid_length?(@cruiser, ["A1", "A2"])
+    assert_equal false, @board.valid_length?(@submarine, ["A2", "A3", "A4"])
+  end
+
+  # def test_it_know_a_has_a_valid_placement
+  #   assert_equal false, @board.valid_placement?(@cruiser, ["A1", "A2"])
+  #   assert_equal false, @board.valid_placement?(@submarine, ["A2", "A3", "A4"])
+  # end
 end

@@ -7,7 +7,6 @@ class Board
   end
 
   def board_letters
-    #require 'pry'; binding.pry
     ("A"..("A".ord + @height - 1).chr).to_a
   end
 
@@ -24,5 +23,13 @@ class Board
       end
     end
     generated_cells
+  end
+
+  def valid_placement?(ship, coordinates)
+    valid_length?(ship, coordinates)
+  end
+
+  def valid_length?(ship, coordinates)
+    ship.length == coordinates.length
   end
 end
