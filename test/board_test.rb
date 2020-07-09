@@ -150,4 +150,44 @@ class BoardTest < Minitest::Test
 
     assert_equal expected_board_render2, @board.render(true)
   end
+
+  def test_it_renders_non_standard_boards
+    board1 = Board.new(6 , 6)
+    board1.place(@cruiser, ["B2", "B3", "B4"])
+    expected_board1_render =  "  1 2 3 4 5 6 \n" +
+                              "A . . . . . . \n" +
+                              "B . . . . . . \n" +
+                              "C . . . . . . \n" +
+                              "D . . . . . . \n" +
+                              "E . . . . . . \n" +
+                              "F . . . . . . \n"
+
+    assert_equal expected_board1_render, board1.render
+
+    expected_board1_render_true =  "  1 2 3 4 5 6 \n" +
+                                   "A . . . . . . \n" +
+                                   "B . S S S . . \n" +
+                                   "C . . . . . . \n" +
+                                   "D . . . . . . \n" +
+                                   "E . . . . . . \n" +
+                                   "F . . . . . . \n"
+
+    assert_equal expected_board1_render_true, board1.render(true)
+
+    board2 = Board.new(3 , 6)
+    board2.place(@cruiser, ["B2", "B3", "B4"])
+    expected_board2_render =  "  1 2 3 4 5 6 \n" +
+                              "A . . . . . . \n" +
+                              "B . . . . . . \n" +
+                              "C . . . . . . \n"
+
+    assert_equal expected_board2_render, board2.render
+
+    expected_board2_render_true =  "  1 2 3 4 5 6 \n" +
+                                   "A . . . . . . \n" +
+                                   "B . S S S . . \n" +
+                                   "C . . . . . . \n"
+
+    assert_equal expected_board2_render_true, board2.render(true)
+  end
 end
