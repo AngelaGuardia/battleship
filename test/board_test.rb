@@ -78,6 +78,8 @@ class BoardTest < Minitest::Test
   def test_it_knows_a_ship_placement_is_on_valid_coordinates
     assert_equal false, @board.valid_coordinate?(["A3", "A4", "A5"])
     assert_equal true, @board.valid_coordinate?(["A2", "A3", "A4"])
+    assert_equal false, @board.valid_coordinate?(["A5"])
+    assert_equal true, @board.valid_coordinate?(["A4"])
   end
 
   def test_it_knows_a_ship_placement_has_a_valid_length
