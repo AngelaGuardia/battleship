@@ -82,6 +82,7 @@ class BoardTest < Minitest::Test
 
   def test_it_knows_when_all_coordinates_are_on_the_same_row
     assert_equal true, @board.on_same_row?(@cruiser, ["A1", "A2", "A4"])
+    assert_equal false, @board.on_same_row?(@cruiser, ["A1", "B1", "C1"])
   end
 
   # def test_it_knows_a_ship_placement_has_consecutive_coordinates
