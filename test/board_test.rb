@@ -34,12 +34,12 @@ class BoardTest < Minitest::Test
     assert_equal ["1", "2", "3", "4", "5", "6"], board.board_numbers
   end
 
-  # def test_it_generates_and_stores_cells
-  #   board_cells = @board.cells
-  #   board_cell_values = board_cells.values
-  #
-  #   assert_instance_of Hash, board_cells
-  #   assert_equal 16, board_cells.length
-  #   assert_instance_of Cell, board_cell_values[0]
-  # end
+  def test_it_generates_and_stores_cells
+    board_cells = @board.cells
+    board_cell_values = board_cells.values
+
+    assert_instance_of Hash, board_cells
+    assert_equal 16, board_cells.length
+    assert_instance_of Cell, board_cell_values[0]
+  end
 end
