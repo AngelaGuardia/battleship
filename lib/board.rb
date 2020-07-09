@@ -69,22 +69,26 @@ class Board
   end
 
   def render(reveal_ship = false)
-    board_string = ""
-    board_string += "  "
-    ("1"..@width.to_s).to_a.each { |num| board_string += num + " " }
-    board_string += "\n"
+    board_string = render_top_row
     @cells.each do |coord, cell|
-      if coord[1] == "1"
-        board_string += coord[0] + " "
-        board_string += cell.render(reveal_ship) + " "
-      elsif coord[1] == @width.to_s
-        board_string += cell.render(reveal_ship) + " "
+      first_column = coord[1] == "1"
+      last_column = coord[1] == @width.to_s
+
+      if first_column
+        column_letter = coord[0]
+        board_string += column_letter + " "
+      end
+
+      board_string += cell.render(reveal_ship) + " "
+
+      if last_column
         board_string += "\n"
-      else
-        board_string += cell.render(reveal_ship) + " "
       end
     end
     board_string
   end
 
+  def render_top_row
+    "  #{board_numbers.join(" ")} \n"
+  end
 end
