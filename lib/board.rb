@@ -15,14 +15,12 @@ class Board
   end
 
   def generate_cells
-    generated_cells = {}
-
-    board_letters.each do |letter|
+    board_letters.reduce({}) do |generated_cells, letter|
       board_numbers.each do |number|
         generated_cells[letter + number] = Cell.new(letter + number)
       end
+      generated_cells
     end
-    generated_cells
   end
 
   def valid_placement?(ship, coordinates)
