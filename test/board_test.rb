@@ -75,19 +75,24 @@ class BoardTest < Minitest::Test
     assert_instance_of Cell, board_cell_values[0]
   end
 
+  def test_it_knows_a_ship_placement_is_on_valid_coordinates
+    assert_equal false, @board.valid_coordinate?(["A3", "A4", "A5"])
+    assert_equal true, @board.valid_coordinate?(["A2", "A3", "A4"])
+  end
+
   def test_it_knows_a_ship_placement_has_a_valid_length
     assert_equal false, @board.valid_length?(@cruiser, ["A1", "A2"])
     assert_equal false, @board.valid_length?(@submarine, ["A2", "A3", "A4"])
   end
 
   def test_it_knows_when_all_coordinates_are_on_the_same_row
-    assert_equal true, @board.on_same_row?(@cruiser, ["A1", "A2", "A4"])
-    assert_equal false, @board.on_same_row?(@cruiser, ["A1", "B1", "C1"])
+    assert_equal true, @board.on_same_row?(["A1", "A2", "A4"])
+    assert_equal false, @board.on_same_row?(["A1", "B1", "C1"])
   end
 
   def test_it_knows_when_all_coordinates_are_on_the_same_column
-    assert_equal false, @board.on_same_column?(@cruiser, ["A1", "A2", "A4"])
-    assert_equal true, @board.on_same_column?(@cruiser, ["A1", "B1", "C1"])
+    assert_equal false, @board.on_same_column?(["A1", "A2", "A4"])
+    assert_equal true, @board.on_same_column?(["A1", "B1", "C1"])
   end
 
   def test_it_knows_a_ship_placement_has_consecutive_coordinates
@@ -100,8 +105,12 @@ class BoardTest < Minitest::Test
 
   end
 
-  # def test_it_knows_a_ship_has_a_valid_placement
-  #   assert_equal false, @board.valid_placement?(@cruiser, ["A1", "A2"])
-  #   assert_equal false, @board.valid_placement?(@submarine, ["A2", "A3", "A4"])
-  # end
+  def test_it_knows_a_ship_has_a_valid_placement
+    assert_equal true, @board.valid_placement?(@submarine, ["A1", "A2"])
+    assert_equal true, @board.valid_placement?(@cruiser, ["A2", "A3", "A4"])
+    assert_equal false, @board.valid_placement?(@cruiser, ["A3", "A4", "A5"])
+  end
+
+  def test_it_can_place_ships_on_its_cells
+  end
 end
