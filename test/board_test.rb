@@ -34,12 +34,43 @@ class BoardTest < Minitest::Test
     assert_equal ["1", "2", "3", "4", "5", "6"], board.board_numbers
   end
 
-  def test_it_generates_and_stores_cells
+  def test_it_generates_and_stores_cells_default
     board_cells = @board.cells
     board_cell_values = board_cells.values
 
     assert_instance_of Hash, board_cells
     assert_equal 16, board_cells.length
+    assert_instance_of Cell, board_cell_values[0]
+  end
+
+  def test_it_generates_and_stores_cells_dynamic
+    board = Board.new(6 , 6)
+    size = 6 * 6
+    board_cells = board.cells
+    board_cell_values = board_cells.values
+
+    assert_instance_of Hash, board_cells
+    assert_equal size, board_cells.length
+    assert_instance_of Cell, board_cell_values[0]
+  end
+
+  def test_it_generates_and_stores_cells_dynamic_rectangular
+    board = Board.new(4 , 6)
+    size = 4 * 6
+    board_cells = board.cells
+    board_cell_values = board_cells.values
+
+    assert_instance_of Hash, board_cells
+    assert_equal size, board_cells.length
+    assert_instance_of Cell, board_cell_values[0]
+
+    board = Board.new(7 , 5)
+    size = 7 * 5
+    board_cells = board.cells
+    board_cell_values = board_cells.values
+
+    assert_instance_of Hash, board_cells
+    assert_equal size, board_cells.length
     assert_instance_of Cell, board_cell_values[0]
   end
 end
