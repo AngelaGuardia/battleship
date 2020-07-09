@@ -85,11 +85,16 @@ class BoardTest < Minitest::Test
     assert_equal false, @board.on_same_row?(@cruiser, ["A1", "B1", "C1"])
   end
 
+  def test_it_knows_when_all_coordinates_are_on_the_same_column
+    assert_equal false, @board.on_same_column?(@cruiser, ["A1", "A2", "A4"])
+    assert_equal true, @board.on_same_column?(@cruiser, ["A1", "B1", "C1"])
+  end
+
   # def test_it_knows_a_ship_placement_has_consecutive_coordinates
-  #   assert_equal false, @board.consecutive_coordinates?(@cruiser, ["A1", "A2", "A4"])
-  #   #assert_equal false, @board.consecutive_coordinates?(@submarine, ["A1", "C1"])
-  #   assert_equal false, @board.consecutive_coordinates?(@cruiser, ["A3", "A2", "A1"])
-  #   #assert_equal false, @board.consecutive_coordinates?(@submarine, ["C1", "B1"])
+  #   refute @board.consecutive_coordinates?(@cruiser, ["A1", "A2", "A4"])
+  #   refute @board.consecutive_coordinates?(@submarine, ["A1", "C1"])
+  #   refute @board.consecutive_coordinates?(@cruiser, ["A3", "A2", "A1"])
+  #   refute @board.consecutive_coordinates?(@submarine, ["C1", "B1"])
   # end
 
   # def test_it_knows_a_ship_has_a_valid_placement
