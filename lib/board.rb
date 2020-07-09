@@ -26,7 +26,11 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-    valid_length?(ship, coordinates) && consecutive_coordinates?(ship, coordinates) && !diagonal_coordinates?
+    valid_coordinate?(coordinates) && valid_length?(ship, coordinates) && consecutive_coordinates?(ship, coordinates)
+  end
+
+  def valid_coordinate?(coordinates)
+    coordinates.all? { |coordinate| @cells.key?(coordinate) }
   end
 
   def valid_length?(ship, coordinates)
@@ -36,20 +40,20 @@ class Board
   def consecutive_coordinates?(ship, coordinates)
     consecutive_row_coord = (coordinates.first..coordinates.last).to_a
     consecutive_row_letters = (coordinates.first[0]..coordinates.last[0]).to_a
-    if on_same_row?(ship, coordinates)
+    if on_same_row?(coordinates)
       consecutive_row_coord == coordinates
-    elsif on_same_column?(ship, coordinates)
+    elsif on_same_column?(coordinates)
       consecutive_row_letters == coordinates.map { |coordinate| coordinate[0] }
     # else it is diagonal or some other placement
     end
   end
 
-  def on_same_row?(ship, coordinates)
+  def on_same_row?(coordinates)
     row_letter = coordinates[0][0]
     coordinates.all? { |coordinate| coordinate[0] == row_letter }
   end
 
-  def on_same_column?(ship, coordinates)
+  def on_same_column?(coordinates)
     column_number = coordinates[0][1]
     coordinates.all? { |coordinate| coordinate[1] == column_number }
   end
