@@ -42,32 +42,4 @@ class Cell
       end
     end
   end
-
-  # def render3(reveal = false)
-  #   if !fired_upon?
-  #     require 'pry'; binding.pry
-  #     "." unless reveal_ship(reveal)
-  #   elsif empty?
-  #     "M"
-  #   end
-  # end
-  #
-  # def reveal_ship(reveal)
-  #   return "S" if reveal && !empty?
-  # end
-  #
-  # def render2(reveal_ship = false)
-  #   if !fired_upon?
-  #     if reveal_ship
-  #       "S"
-  #     end
-  #     "."
-  #   elsif empty?
-  #     "M"
-  #   elsif @ship.sunk?
-  #     "X"
-  #   else
-  #     "H"
-  #   end
-  # end
 end

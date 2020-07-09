@@ -77,6 +77,13 @@ class CellTest < Minitest::Test
     assert_equal(".", @cell1.render)
   end
 
+  def test_it_renders_H_if_occupied_and_fired_upon_provided
+    @cell1.place_ship @cruiser
+    @cell1.fire_upon
+
+    assert_equal "H", @cell1.render
+  end
+
   def test_it_renders_S_if_occupied_and_optional_argument_provided
     @cell1.place_ship(@cruiser)
 
