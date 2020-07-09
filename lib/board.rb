@@ -26,10 +26,22 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-    valid_length?(ship, coordinates)
+    valid_length?(ship, coordinates) && consecutive_coordinates?(ship, coordinates)
   end
 
   def valid_length?(ship, coordinates)
     ship.length == coordinates.length
+  end
+
+  def consecutive_coordinates?(ship, coordinates)
+    consecutive_array = (coordinates.first..coordinates.last).to_a
+    if on_same_row?
+      consecutive_array == coordinates
+    end
+  end
+
+  def on_same_row?(ship, coordinates)
+    row_letter = coordinates[0][0]
+    coordinates.all? { |coordinate| coordinate[0] == row_letter }
   end
 end
