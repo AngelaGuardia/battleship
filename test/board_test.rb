@@ -125,10 +125,29 @@ class BoardTest < Minitest::Test
 
   def test_it_knows_if_placed_ships_overlap
     @board.place(@cruiser, ["A1", "A2", "A3"])
-    
+
     assert_equal true, @board.overlapping_coordinates?(["A1", "B1"])
     assert_equal false, @board.overlapping_coordinates?(["C1", "D1"])
 
     assert_equal false, @board.valid_placement?(@submarine, ["A1", "B1"])
+  end
+
+  def test_it_renders
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+    expected_board_render1 = "  1 2 3 4 \n" +
+                              "A . . . . \n" +
+                              "B . . . . \n" +
+                              "C . . . . \n" +
+                              "D . . . . \n"
+
+    assert_equal expected_board_render1, @board.render
+
+    expected_board_render2 = "  1 2 3 4 \n" +
+                              "A S S S . \n" +
+                              "B . . . . \n" +
+                              "C . . . . \n" +
+                              "D . . . . \n"
+
+    assert_equal expected_board_render2, @board.render(true)
   end
 end
