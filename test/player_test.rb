@@ -31,4 +31,9 @@ class PlayerTest < Minitest::Test
     assert_equal @ships1, @player1.ships
     assert_equal @ships2, @player2.ships
   end
+
+  def test_it_knows_if_it_is_a_computer
+    assert_equal false, @player1.is_computer
+    assert @player2.is_computer
+  end
 end
