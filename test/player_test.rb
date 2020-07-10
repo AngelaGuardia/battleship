@@ -36,4 +36,20 @@ class PlayerTest < Minitest::Test
     assert_equal false, @player1.is_computer
     assert @player2.is_computer
   end
+
+  def test_it_knows_if_it_lost
+    assert_equal false, @player1.has_lost?
+
+    @cruiser1.hit
+    @cruiser1.hit
+    @cruiser1.hit
+
+    assert_equal false, @player1.has_lost?
+
+    @submarine1.hit
+    @submarine1.hit
+    @submarine1.hit
+
+    assert @player1.has_lost?
+  end
 end
