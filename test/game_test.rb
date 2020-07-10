@@ -24,4 +24,7 @@ class GameTest < Minitest::Test
   def test_it_exists
     assert_instance_of Game, @game
   end
+
+  #can't test_it_prints_out_main_menu
+  #can't test_get_user_input
 end
