@@ -134,7 +134,7 @@ class BoardTest < Minitest::Test
     assert_equal false, @board.valid_placement?(@submarine, ["A1", "B1"])
   end
 
-  def test_it_renders
+  def test_it_renders_the_board
     @board.place(@cruiser, ["A1", "A2", "A3"])
     expected_board_render1 =  "  1 2 3 4 \n" +
                               "A . . . . \n" +
@@ -151,6 +151,37 @@ class BoardTest < Minitest::Test
                               "D . . . . \n"
 
     assert_equal expected_board_render2, @board.render(true)
+
+    @board.cells["A1"].fire_upon
+    @board.cells["B2"].fire_upon
+    @board.cells["D4"].fire_upon
+
+    expected_board_render3 =  "  1 2 3 4 \n" +
+                              "A H . . . \n" +
+                              "B . M . . \n" +
+                              "C . . . . \n" +
+                              "D . . . M \n"
+
+    assert_equal expected_board_render3, @board.render
+
+    expected_board_render4 =  "  1 2 3 4 \n" +
+                              "A H S S . \n" +
+                              "B . M . . \n" +
+                              "C . . . . \n" +
+                              "D . . . M \n"
+
+    assert_equal expected_board_render4, @board.render(true)
+
+    @board.cells["A2"].fire_upon
+    @board.cells["A3"].fire_upon
+
+    expected_board_render5 =  "  1 2 3 4 \n" +
+                              "A X X X . \n" +
+                              "B . M . . \n" +
+                              "C . . . . \n" +
+                              "D . . . M \n"
+
+    assert_equal expected_board_render5, @board.render
   end
 
   def test_it_renders_non_standard_boards
