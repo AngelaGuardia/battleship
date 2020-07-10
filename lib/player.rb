@@ -5,4 +5,10 @@ class Player
     @ships = ships
     @is_computer = is_computer
   end
+
+  def has_lost?
+    @ships.all? do |ship|
+      ship.sunk?
+    end
+  end
 end
