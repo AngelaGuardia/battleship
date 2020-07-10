@@ -6,15 +6,29 @@ require './lib/player'
 
 class PlayerTest < Minitest::Test
   def setup
-    @cruiser = Ship.new("Cruiser", 3)
-    @submarine = Ship.new("Submarine", 2)
-    @ships = [@cruiser, @submarine]
-    @player1 = Player("Human Bob", @ships)
-    @player2 = Player("Computer", @ships, true)
+    @cruiser1 = Ship.new("Cruiser", 3)
+    @submarine1 = Ship.new("Submarine", 2)
+    @ships1 = [@cruiser1, @submarine1]
+    @player1 = Player.new("Ada Lovelace", @ships1)
+
+    @cruiser2 = Ship.new("Cruiser", 3)
+    @submarine2 = Ship.new("Submarine", 2)
+    @ships2 = [@cruiser2, @submarine2]
+    @player2 = Player.new("Watson", @ships2, true)
   end
 
   def test_it_exists
     assert_instance_of Player, @player1
     assert_instance_of Player, @player2
+  end
+
+  def test_it_has_a_name
+    assert_equal "Ada Lovelace", @player1.name
+    assert_equal "Watson", @player2.name
+  end
+
+  def test_it_has_ships
+    assert_equal @ships1, @player1.ships
+    assert_equal @ships2, @player2.ships
   end
 end
