@@ -35,6 +35,14 @@ class BoardTest < Minitest::Test
     assert_equal ["1", "2", "3", "4", "5", "6"], board.board_numbers
   end
 
+  def test_board_renders_top_row
+    board = Board.new(6 , 6)
+    board2 = Board.new(10 , 10)
+
+    assert_equal "  1 2 3 4 5 6 \n", board.render_top_row
+    assert_equal "  1 2 3 4 5 6 7 8 9 10 \n", board2.render_top_row
+  end
+
   def test_it_generates_and_stores_cells_default
     board_cells = @board.cells
     board_cell_values = board_cells.values
