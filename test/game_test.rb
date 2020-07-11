@@ -18,7 +18,7 @@ class GameTest < Minitest::Test
     @cruiser2 = Ship.new("Cruiser", 3)
     @submarine2 = Ship.new("Submarine", 2)
     @ships2 = [@cruiser2, @submarine2]
-    @player2 = Player.new("Watson", @ships2, @board1, true)
+    @player2 = Player.new("Watson", @ships2, @board2, true)
 
     @players = [@player1, @player2]
     @game = Game.new(@players)
