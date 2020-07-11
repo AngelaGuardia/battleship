@@ -33,7 +33,11 @@ class Game
     @players.each do |player|
       if player.is_computer
         player.ships.each do |ship|
-          player.board.place(ship, random_coordinates(player, ship.length))
+          coordinates = random_coordinates(player, ship.length)
+          until player.board.valid_placement?(ship, coordinates)
+            coordinates = random_coordinates(player, ship.length)
+          end
+          player.board.place(ship, coordinates)
         end
       end
     end
