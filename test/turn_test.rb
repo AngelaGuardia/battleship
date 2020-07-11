@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
+require './lib/board'
 require './lib/ship'
 require './lib/player'
 require './lib/turn'
@@ -9,11 +10,13 @@ class TurnTest < Minitest::Test
     @cruiser1 = Ship.new("Cruiser", 3)
     @submarine1 = Ship.new("Submarine", 2)
     @ships1 = [@cruiser1, @submarine1]
-    @player1 = Player.new("Alan Turing", @ships1)
+    @board1 = Board.new()
+    @player1 = Player.new("Alan Turing", @ships1, @board1)
     @cruiser2 = Ship.new("Cruiser", 3)
     @submarine2 = Ship.new("Submarine", 2)
     @ships2 = [@cruiser2, @submarine2]
-    @player2 = Player.new("Watson", @ships2, true)
+    @board2 = Board.new()
+    @player2 = Player.new("Watson", @ships2, @board2, true)
 
     @turn = Turn.new(@player1, @player2)
   end
