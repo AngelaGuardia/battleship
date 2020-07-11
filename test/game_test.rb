@@ -49,4 +49,10 @@ class GameTest < Minitest::Test
     assert @board1.valid_placement?(@cruiser1, coordinates1)
     assert @board1.valid_placement?(@submarine1, coordinates2)
   end
+
+  def test_it_prints_a_message_after_computer_ship_placement
+    expected = "I have laid out my ships on the grid.\nYou now need to lay out your two ships.\n The Cruiser is three units long and the Submarine is two units long.\n"
+
+    assert expected, @game.computer_message
+  end
 end
