@@ -13,6 +13,7 @@ class Game
     user_input = get_user_input
     if user_input == "p"
       place_computer_ships
+      computer_message
       #create New turn
       # Turn.start_turn
     else
@@ -56,5 +57,14 @@ class Game
       end
     end
     random_arrays.sample
+  end
+
+  # TODO: will need to be modified to handle multiple ships in iteration 4
+  def computer_message
+    @players.each do |player|
+      if player.is_computer
+        puts "I have laid out my ships on the grid.\nYou now need to lay out your two ships.\n The #{player.ships[0].type} is #{player.ships[0].length} units long and the #{player.ships[1].type} is #{player.ships[1].length} units long.\n"
+      end
+    end
   end
 end
