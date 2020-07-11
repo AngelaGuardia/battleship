@@ -6,12 +6,20 @@ class Turn
   end
 
   def human_shot
-    p "Enter the coordinate for your shot:"
+    p enter_coord_msg
     input = gets.chomp
     while (!@player1.board.valid_coordinate?(input))
-      p "Please enter a valid coordinate:"
+      p not_valid_coord_msg
       input = gets.chomp
     end
+  end
+
+  def enter_coord_msg
+    "Enter the coordinate for your shot:"
+  end
+
+  def not_valid_coord_msg
+    "Please enter a valid coordinate:"
   end
 
   def display_boards
