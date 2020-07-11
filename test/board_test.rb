@@ -231,4 +231,26 @@ class BoardTest < Minitest::Test
 
     assert_equal expected_board2_render_true, board2.render(true)
   end
+
+  def test_it_can_make_a_hash_of_rows
+    expected = {
+      "A"=>["A1", "A2", "A3", "A4"],
+      "B"=>["B1", "B2", "B3", "B4"],
+      "C"=>["C1", "C2", "C3", "C4"],
+      "D"=>["D1", "D2", "D3", "D4"]
+    }
+
+    assert_equal expected, @board.rows
+  end
+
+  def test_it_can_make_a_hash_of_columns
+    expected = {
+     "1"=>["A1", "B1", "C1", "D1"],
+     "2"=>["A2", "B2", "C2", "D2"],
+     "3"=>["A3", "B3", "C3", "D3"],
+     "4"=>["A4", "B4", "C4", "D4"]
+   }
+   
+    assert_equal expected, @board.columns
+  end
 end

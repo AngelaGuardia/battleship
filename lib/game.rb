@@ -1,5 +1,7 @@
 class Game
-  def initialize(player1, player2)
+  attr_reader :players
+  def initialize(players)
+    @players = players
   end
 
   def print_main_menu
@@ -10,6 +12,7 @@ class Game
     print_main_menu
     user_input = get_user_input
     if user_input == "p"
+      place_computer_ships
       #create New turn
       # Turn.start_turn
     else
@@ -26,4 +29,32 @@ class Game
     user_input
   end
 
+  def place_computer_ships
+    @players.each do |player|
+      if player.is_computer
+        player.ships.each do |ship|
+          coordinates = random_coordinates(player, ship.length)
+          until player.board.valid_placement?(ship, coordinates)
+            coordinates = random_coordinates(player, ship.length)
+          end
+          player.board.place(ship, coordinates)
+        end
+      end
+    end
+  end
+
+  def random_coordinates(player, length)
+    random_arrays = []
+    board = player.board
+    if [true, false].sample
+      board.rows[board.board_letters.sample].each_cons(length) do |row|
+        random_arrays << row
+      end
+    else
+      board.columns[board.board_numbers.sample].each_cons(length) do |column|
+        random_arrays << column
+      end
+    end
+    random_arrays.sample
+  end
 end
