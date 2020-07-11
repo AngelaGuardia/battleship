@@ -5,7 +5,7 @@ class Game
   end
 
   def print_main_menu
-    puts "🚢Welcome to BATTLESHIP ⚓ 🏴‍☠️\nEnter p to play. Enter q to quit."
+    puts "\n🚢Welcome to BATTLESHIP ⚓ 🏴‍☠️\nEnter p to play. Enter q to quit."
   end
 
   def start
@@ -14,6 +14,7 @@ class Game
     if user_input == "p"
       place_computer_ships
       computer_message
+      puts render_human_board
       #create New turn
       # Turn.start_turn
     else
@@ -62,9 +63,15 @@ class Game
   # TODO: will need to be modified to handle multiple ships in iteration 4
   def computer_message
     @players.each do |player|
-      if player.is_computer
-        puts "I have laid out my ships on the grid.\nYou now need to lay out your two ships.\n The #{player.ships[0].type} is #{player.ships[0].length} units long and the #{player.ships[1].type} is #{player.ships[1].length} units long.\n"
+      if !player.is_computer
+        puts "\nI have laid out my ships on the grid.\nYou now need to lay out your two ships.\nThe #{player.ships[0].type} is #{player.ships[0].length} units long and the #{player.ships[1].type} is #{player.ships[1].length} units long.\n"
       end
     end
+  end
+
+  def render_human_board
+    @players.select do |player|
+      player.is_computer == false
+    end[0].board.render
   end
 end
