@@ -34,4 +34,23 @@ class TurnTest < Minitest::Test
     assert_equal "Watson", @turn.player2.name
     assert_instance_of Player, @turn.player2
   end
+
+  def test_can_display_empty_boards
+    expected = (
+      "=============COMPUTER BOARD=============\n" +
+      "  1 2 3 4 \n" +
+      "A . . . . \n" +
+      "B . . . . \n" +
+      "C . . . . \n" +
+      "D . . . . \n" +
+      "==============PLAYER BOARD==============\n" +
+      "  1 2 3 4 \n" +
+      "A . . . . \n" +
+      "B . . . . \n" +
+      "C . . . . \n" +
+      "D . . . . \n"
+    )
+
+    assert_equal(expected, @turn.display_boards)
+  end
 end
