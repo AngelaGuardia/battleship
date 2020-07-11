@@ -20,7 +20,8 @@ class GameTest < Minitest::Test
     @ships2 = [@cruiser2, @submarine2]
     @player2 = Player.new("Watson", @ships2, @board1, true)
 
-    @game = Game.new(@player1, @board1, @player2, @board2)
+    @players = [@player1, @player2]
+    @game = Game.new(@players)
   end
 
   def test_it_exists
@@ -31,10 +32,8 @@ class GameTest < Minitest::Test
   #can't test_get_user_input
 
   def test_it_has_players
-    assert_instance_of Player, @game.player1
-    assert_equal @player1, @game.player1
-    assert_instance_of Player, @game.player2
-    assert_equal @player2, @game.player2
+    assert_instance_of Player, @game.players[0]
+    assert_instance_of Player, @game.players[1]
   end
 
   # TODO: I don't think we need to test that it CAN place ships
