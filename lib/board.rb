@@ -24,7 +24,7 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-    valid_coordinate?(coordinates) && valid_length?(ship, coordinates) && !overlapping_coordinates?(coordinates) && consecutive_coordinates?(ship, coordinates)
+    valid_coordinate?(coordinates) && valid_length?(ship, coordinates) && !overlapping_coordinates?(coordinates) && consecutive_coordinates?(coordinates)
   end
 
   def valid_coordinate?(coordinates)
@@ -41,7 +41,7 @@ class Board
     end
   end
 
-  def consecutive_coordinates?(ship, coordinates)
+  def consecutive_coordinates?(coordinates)
     consecutive_row_coord = (coordinates.first..coordinates.last).to_a
     consecutive_row_letters = (coordinates.first[0]..coordinates.last[0]).to_a
     if on_same_row?(coordinates)
