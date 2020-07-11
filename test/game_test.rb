@@ -20,7 +20,7 @@ class GameTest < Minitest::Test
     @ships2 = [@cruiser2, @submarine2]
     @player2 = Player.new("Watson", @ships2, @board1, true)
 
-    @game = Game.new(@player1, @player2)
+    @game = Game.new(@player1, @board1, @player2, @board2)
   end
 
   def test_it_exists
@@ -35,5 +35,12 @@ class GameTest < Minitest::Test
     assert_equal @player1, @game.player1
     assert_instance_of Player, @game.player2
     assert_equal @player2, @game.player2
+  end
+
+  def test_it_has_a_board
+    assert_instance_of Board, @game.board1
+    assert_equal @board1, @game.board1
+    assert_instance_of Board, @game.board2
+    assert_equal @board2, @game.board2
   end
 end
