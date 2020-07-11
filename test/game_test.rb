@@ -41,4 +41,12 @@ class GameTest < Minitest::Test
   # test that it places ships randonly
   def test_it_can_randomly_place_computer_ships_on_the_board
   end
+
+  def test_it_can_generate_random_valid_coordinates
+    coordinates1 = @game.random_coordinates(@player1, @cruiser1.length)
+    coordinates2 = @game.random_coordinates(@player1, @submarine1.length)
+
+    assert @board1.valid_placement?(@cruiser1, coordinates1)
+    assert @board1.valid_placement?(@submarine1, coordinates2)
+  end
 end

@@ -30,7 +30,27 @@ class Game
   end
 
   def place_computer_ships
-
+    @players.each do |player|
+      if player.is_computer
+        player.ships.each do |ship|
+          player.board.place(ship, random_coordinates(player, ship.length))
+        end
+      end
+    end
   end
 
+  def random_coordinates(player, length)
+    random_arrays = []
+    board = player.board
+    if [true, false].sample
+      board.rows[board.board_letters.sample].each_cons(length) do |row|
+        random_arrays << row
+      end
+    else
+      board.columns[board.board_numbers.sample].each_cons(length) do |column|
+        random_arrays << column
+      end
+    end
+    random_arrays.sample
+  end
 end
