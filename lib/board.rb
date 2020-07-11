@@ -91,4 +91,12 @@ class Board
   def render_top_row
     "  #{board_numbers.join(" ")} \n"
   end
+
+  def rows
+    cells.keys.group_by { |coord| coord[0] }
+  end
+
+  def columns
+    cells.keys.group_by { |coord| coord[1] }
+  end
 end
