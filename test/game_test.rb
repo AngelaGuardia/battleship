@@ -51,8 +51,18 @@ class GameTest < Minitest::Test
   end
 
   def test_it_prints_a_message_after_computer_ship_placement
-    expected = "I have laid out my ships on the grid.\nYou now need to lay out your two ships.\n The Cruiser is three units long and the Submarine is two units long.\n"
+    expected = "\nI have laid out my ships on the grid.\nYou now need to lay out your two ships.\nThe Cruiser is three units long and the Submarine is two units long.\n"
 
     assert expected, @game.computer_message
+  end
+
+  # QUESTION: is this test redundant since we've already tested that the board can render?
+  def test_it_renders_the_humans_board
+    expected = "  1 2 3 4 \n" +
+               "A . . . . \n" +
+               "B . . . . \n" +
+               "C . . . . \n" +
+               "D . . . . \n"
+    assert_equal expected, @game.render_human_board
   end
 end
