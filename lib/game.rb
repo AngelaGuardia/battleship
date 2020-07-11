@@ -1,10 +1,8 @@
 class Game
-  attr_reader :player1, :player2, :board1, :board2
-  def initialize(player1, board1, player2, board2)
+  attr_reader :player1, :player2
+  def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
-    @board1 = board1
-    @board2 = board2
   end
 
   def print_main_menu
@@ -15,6 +13,7 @@ class Game
     print_main_menu
     user_input = get_user_input
     if user_input == "p"
+      place_computer_ships
       #create New turn
       # Turn.start_turn
     else
@@ -29,6 +28,10 @@ class Game
       get_user_input
     end
     user_input
+  end
+
+  def place_computer_ships
+
   end
 
 end
