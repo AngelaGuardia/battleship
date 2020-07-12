@@ -16,8 +16,8 @@ class Game
       computer_message
       puts render_human_board
       place_human_ships
-      #create New turn
-      # Turn.start_turn
+      turn = Turn.new(@players[0], @players[1])
+      turn.start
     else
       puts "Thanks for Playing!"
     end
