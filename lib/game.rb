@@ -15,9 +15,11 @@ class Game
       place_computer_ships
       #create New turn
       # Turn.start_turn
+      puts end_game(turn.game_winner)
     else
       puts "Thanks for Playing!"
     end
+    start
   end
 
   def get_user_input
@@ -56,5 +58,13 @@ class Game
       end
     end
     random_arrays.sample
+  end
+
+  def end_game(winner)
+    if winner.is_computer
+      "I won! I'm the AI ruler of the world!"
+    else
+      "You won! Woot woot!"
+    end
   end
 end
