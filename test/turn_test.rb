@@ -35,6 +35,14 @@ class TurnTest < Minitest::Test
     assert_instance_of Player, @turn.player2
   end
 
+  def test_enter_coord_msg
+    assert_equal "Enter the coordinate for your shot:", @turn.enter_coord_msg
+  end
+
+  def test_not_valid_coord_msg
+    assert_equal "Please enter a valid coordinate:", @turn.not_valid_coord_msg
+  end
+
   def test_can_display_empty_boards
     expected = (
       "=============COMPUTER BOARD=============\n" +

@@ -26,11 +26,15 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-    valid_coordinate?(coordinates) && valid_length?(ship, coordinates) && !overlapping_coordinates?(coordinates) && consecutive_coordinates?(coordinates)
+    valid_coordinates?(coordinates) && valid_length?(ship, coordinates) && !overlapping_coordinates?(coordinates) && consecutive_coordinates?(ship, coordinates)
   end
 
-  def valid_coordinate?(coordinates)
-    coordinates.all? { |coordinate| @cells.key?(coordinate) }
+  def valid_coordinates?(coordinates)
+    coordinates.all? { |coordinate| valid_coordinate?(coordinate) }
+  end
+
+  def valid_coordinate?(coordinate)
+    @cells.key?(coordinate.upcase)
   end
 
   def get_cells_not_fired_upon
