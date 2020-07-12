@@ -244,12 +244,27 @@ class BoardTest < Minitest::Test
 
   def test_it_can_make_a_hash_of_columns
     expected = {
-     "1"=>["A1", "B1", "C1", "D1"],
-     "2"=>["A2", "B2", "C2", "D2"],
-     "3"=>["A3", "B3", "C3", "D3"],
-     "4"=>["A4", "B4", "C4", "D4"]
-   }
+      "1"=>["A1", "B1", "C1", "D1"],
+      "2"=>["A2", "B2", "C2", "D2"],
+      "3"=>["A3", "B3", "C3", "D3"],
+      "4"=>["A4", "B4", "C4", "D4"]
+    }
 
     assert_equal expected, @board.columns
+  end
+
+  def test_it_can_get_not_fired_upon_cells
+    @board.cells['A1'].fire_upon
+
+    assert_equal 15, @board.get_cells_not_fired_upon.length
+
+    @board.cells['A2'].fire_upon
+
+    assert_equal 14, @board.get_cells_not_fired_upon.length
+
+    @board.cells['B1'].fire_upon
+    @board.cells['B2'].fire_upon
+
+    assert_equal 12, @board.get_cells_not_fired_upon.length
   end
 end
