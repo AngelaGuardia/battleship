@@ -5,16 +5,17 @@ class Game
   end
 
   def print_main_menu
-    puts "\n🚢Welcome to BATTLESHIP ⚓ 🏴‍☠️\nEnter p to play. Enter q to quit."
+    "\n🚢Welcome to BATTLESHIP ⚓ 🏴‍☠️\nEnter p to play. Enter q to quit."
   end
 
   def start
-    print_main_menu
+    puts print_main_menu
     user_input = get_user_input
     if user_input == "p"
       place_computer_ships
       computer_message
       puts render_human_board
+      place_human_ships
       #create New turn
       # Turn.start_turn
     else
@@ -73,5 +74,19 @@ class Game
     @players.select do |player|
       player.is_computer == false
     end[0].board.render
+  end
+
+  def place_human_ships
+    @players.each do |player|
+      if !player.is_computer
+        player.ships.each do |ship|
+          print coordinates_prompt(ship)
+        end
+      end
+    end
+  end
+
+  def coordinates_prompt(ship)
+    "Enter the squares for the #{ship.type} (#{ship.length} spaces):\n>"
   end
 end
