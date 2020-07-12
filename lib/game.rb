@@ -84,8 +84,9 @@ class Game
           coordinates = get_human_coordinates
           until player.board.valid_placement?(ship, coordinates)
             print coordinates_reprompt
-            get_human_coordinates
+            coordinates = get_human_coordinates
           end
+          player.board.place(ship, coordinates)
         end
       end
     end
