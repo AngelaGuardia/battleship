@@ -22,6 +22,12 @@ class Turn
     "Please enter a valid coordinate:"
   end
 
+  def computer_shot
+    valid_cells = @player2.board.get_cells_not_fired_upon
+    random_cell = @player2.board.get_random_cell(valid_cells)
+    random_cell.fire_upon
+  end
+
   def display_boards
     "=============COMPUTER BOARD=============\n" +
     @player2.board.render +
