@@ -81,6 +81,11 @@ class Game
       if !player.is_computer
         player.ships.each do |ship|
           print coordinates_prompt(ship)
+          coordinates = get_human_coordinates
+          until player.board.valid_placement?(ship, coordinates)
+            print coordinates_reprompt
+            get_human_coordinates
+          end
         end
       end
     end
@@ -88,5 +93,13 @@ class Game
 
   def coordinates_prompt(ship)
     "Enter the squares for the #{ship.type} (#{ship.length} spaces):\n>"
+  end
+
+  def get_human_coordinates
+    gets.chomp.upcase.split(" ")
+  end
+
+  def coordinates_reprompt
+    "Those are invalid coordinates. Please try again:\n>"
   end
 end
