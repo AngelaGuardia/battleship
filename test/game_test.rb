@@ -49,4 +49,25 @@ class GameTest < Minitest::Test
     assert @board1.valid_placement?(@cruiser1, coordinates1)
     assert @board1.valid_placement?(@submarine1, coordinates2)
   end
+
+  def test_it_prints_a_message_after_computer_ship_placement
+    expected = "\nI have laid out my ships on the grid.\nYou now need to lay out your two ships.\nThe Cruiser is three units long and the Submarine is two units long.\n"
+
+    assert expected, @game.computer_message
+  end
+
+  def test_it_prints_prompt_to_enter_coordinates
+    assert_equal "Enter the squares for the Cruiser (3 spaces):\n>", @game.coordinates_prompt(@cruiser1)
+  end
+
+  #can't test get_human_coordinates method
+
+  def test_it_prints_REprompt_to_enter_valid_coordinates
+    assert_equal "Those are invalid coordinates. Please try again:\n>" , @game.coordinates_reprompt
+  end
+
+  def test_it_can_end_the_game
+    assert_equal "I won! I'm the AI ruler of the world!", @game.end_game(@player2)
+    assert_equal "You won! Woot woot!", @game.end_game(@player1)
+  end
 end
