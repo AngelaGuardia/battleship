@@ -65,4 +65,9 @@ class GameTest < Minitest::Test
                "D . . . . \n"
     assert_equal expected, @game.render_human_board
   end
+
+  def test_it_prints_prompt_to_enter_coordinates
+    assert_equal "Enter the squares for the Cruiser (3 spaces):\n>", @game.coordinates_prompt(@cruiser1)
+  end
+
 end
