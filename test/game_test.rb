@@ -70,4 +70,7 @@ class GameTest < Minitest::Test
     assert_equal "Enter the squares for the Cruiser (3 spaces):\n>", @game.coordinates_prompt(@cruiser1)
   end
 
+  def test_it_prints_REprompt_to_enter_valid_coordinates
+    assert_equal "Those are invalid coordinates. Please try again:\n>" , @game.coordinates_reprompt
+  end
 end
