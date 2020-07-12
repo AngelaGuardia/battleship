@@ -56,16 +56,6 @@ class GameTest < Minitest::Test
     assert expected, @game.computer_message
   end
 
-  # QUESTION: is this test redundant since we've already tested that the board can render?
-  def test_it_renders_the_humans_board
-    expected = "  1 2 3 4 \n" +
-               "A . . . . \n" +
-               "B . . . . \n" +
-               "C . . . . \n" +
-               "D . . . . \n"
-    assert_equal expected, @game.render_human_board
-  end
-
   def test_it_prints_prompt_to_enter_coordinates
     assert_equal "Enter the squares for the Cruiser (3 spaces):\n>", @game.coordinates_prompt(@cruiser1)
   end
@@ -74,5 +64,10 @@ class GameTest < Minitest::Test
 
   def test_it_prints_REprompt_to_enter_valid_coordinates
     assert_equal "Those are invalid coordinates. Please try again:\n>" , @game.coordinates_reprompt
+  end
+
+  def test_it_can_end_the_game
+    assert_equal "I won! I'm the AI ruler of the world!", @game.end_game(@player2)
+    assert_equal "You won! Woot woot!", @game.end_game(@player1)
   end
 end

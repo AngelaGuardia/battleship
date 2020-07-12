@@ -18,9 +18,11 @@ class Game
       place_human_ships
       # turn = Turn.new(@players[0], @players[1])
       # turn.start
+      puts end_game(turn.game_winner)
     else
-      puts "Thanks for Playing!"
+      return "Thanks for Playing!"
     end
+    start
   end
 
   def get_user_input
@@ -102,5 +104,13 @@ class Game
 
   def coordinates_reprompt
     "Those are invalid coordinates. Please try again:\n>"
+  end
+  
+  def end_game(winner)
+    if winner.is_computer
+      "I won! I'm the AI ruler of the world!"
+    else
+      "You won! Woot woot!"
+    end
   end
 end
