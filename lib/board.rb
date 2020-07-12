@@ -33,6 +33,20 @@ class Board
     coordinates.all? { |coordinate| @cells.key?(coordinate) }
   end
 
+  def get_cells_not_fired_upon
+    unhit_cells = []
+    @cells.keys.each do |key|
+      if !@cells[key].fired_upon?
+        unhit_cells << cells[key]
+      end
+    end
+    unhit_cells
+  end
+
+  def get_random_cell(cells)
+    cells.shuffle[0]
+  end
+
   def valid_length?(ship, coordinates)
     ship.length == coordinates.length
   end
