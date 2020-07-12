@@ -88,6 +88,11 @@ class BoardTest < Minitest::Test
     assert_equal false, @board.valid_coordinate?("Not Right")
   end
 
+  def test_coordinate_is_valid_accepts_lower_case_input
+    assert_equal true, @board.valid_coordinate?("a3")
+    assert_equal true, @board.valid_coordinate?("b3")
+  end
+
   def test_it_knows_a_ship_placement_is_on_valid_coordinates
     assert_equal false, @board.valid_coordinates?(["A3", "A4", "A5"])
     assert_equal true, @board.valid_coordinates?(["A2", "A3", "A4"])
