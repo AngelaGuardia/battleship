@@ -17,7 +17,7 @@ class Game
       # Turn.start_turn
       puts end_game(turn.game_winner)
     else
-      puts "Thanks for Playing!"
+      return "Thanks for Playing!"
     end
     start
   end
