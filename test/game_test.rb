@@ -49,4 +49,9 @@ class GameTest < Minitest::Test
     assert @board1.valid_placement?(@cruiser1, coordinates1)
     assert @board1.valid_placement?(@submarine1, coordinates2)
   end
+
+  def test_it_can_end_the_game
+    assert_equal "I won! I'm the AI ruler of the world!", @game.end_game(@player2)
+    assert_equal "You won! Woot woot!", @game.end_game(@player1)
+  end
 end
