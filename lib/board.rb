@@ -125,6 +125,6 @@ class Board
   end
 
   def set_height height
-    @width = height
+    @height = height
   end
 end
