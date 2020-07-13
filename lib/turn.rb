@@ -7,11 +7,12 @@ class Turn
 
   def human_shot
     p enter_coord_msg
-    input = gets.chomp
-    while (!@player1.board.valid_coordinate?(input))
+    input = gets.chomp.upcase
+    while (!@player2.board.valid_coordinate?(input))
       p not_valid_coord_msg
-      input = gets.chomp
+      input = gets.chomp.upcase
     end
+    @player2.board.cells[input].fire_upon
   end
 
   def enter_coord_msg
@@ -23,8 +24,8 @@ class Turn
   end
 
   def computer_shot
-    valid_cells = @player2.board.get_cells_not_fired_upon
-    random_cell = @player2.board.get_random_cell(valid_cells)
+    valid_cells = @player1.board.get_cells_not_fired_upon
+    random_cell = @player1.board.get_random_cell(valid_cells)
     random_cell.fire_upon
   end
 
