@@ -4,11 +4,7 @@ class Game
               :board2,
               :ships1,
               :ships2
-
-  def initialize(players)
-    @players = players
-  end
-
+              
   def print_main_menu
     "\n🚢Welcome to BATTLESHIP ⚓ 🏴‍☠️\nEnter p to play. Enter q to quit."
   end
