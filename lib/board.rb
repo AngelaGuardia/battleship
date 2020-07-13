@@ -119,4 +119,12 @@ class Board
   def columns
     cells.keys.group_by { |coord| coord[1] }
   end
+
+  def set_width width
+    @width = width
+  end
+
+  def set_height height
+    @width = height
+  end
 end
