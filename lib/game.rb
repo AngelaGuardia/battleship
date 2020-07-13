@@ -16,9 +16,19 @@ class Game
       computer_message
       puts render_human_board
       place_human_ships
-      # turn = Turn.new(@players[0], @players[1])
-      # turn.start
-      puts end_game(turn.game_winner)
+      turn = Turn.new(@players[0], @players[1])
+      unless @players[0].has_lost? || @players[1].has_lost
+        turn.human_shot
+        turn.computer_shot
+        puts results
+        puts turn.display_boards
+      end
+      # puts end_game(turn.game_winner)
+      if @players[0].has_lost
+        end_game(@players[1])
+      else
+        end_game(@players[0])
+      end
     else
       return "Thanks for Playing!"
     end
@@ -105,7 +115,7 @@ class Game
   def coordinates_reprompt
     "Those are invalid coordinates. Please try again:\n>"
   end
-  
+
   def end_game(winner)
     if winner.is_computer
       "I won! I'm the AI ruler of the world!"
