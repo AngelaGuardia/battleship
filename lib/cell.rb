@@ -20,12 +20,12 @@ class Cell
   end
 
   def shot_result_message
-    if @ship.sunk?
-      " shot on #{@coordinate} sunk a #{@ship.type}."
-    elsif !empty? && @fired_upon
-      " shot on #{@coordinate} hit."
-    else
+    if empty?
       " shot on #{@coordinate} was a miss."
+    elsif @ship.sunk?
+      " shot on #{@coordinate} sunk a #{@ship.type}."
+    else
+      " shot on #{@coordinate} hit."
     end
   end
 
