@@ -10,7 +10,7 @@ class Turn
   def human_shot
     p enter_coord_msg
     input = gets.chomp.upcase
-    while (!@player2.board.valid_coordinate?(input))
+    while (!@player2.board.valid_coordinates?(input))
       p not_valid_coord_msg
       input = gets.chomp.upcase
     end
