@@ -17,17 +17,17 @@ class Game
       puts render_human_board
       place_human_ships
       turn = Turn.new(@players[0], @players[1])
-      unless @players[0].has_lost? || @players[1].has_lost
+      until @players[0].has_lost? || @players[1].has_lost?
         turn.human_shot
         turn.computer_shot
-        puts results
+        puts turn.results
         puts turn.display_boards
       end
       # puts end_game(turn.game_winner)
-      if @players[0].has_lost
-        end_game(@players[1])
+      if @players[0].has_lost?
+        puts end_game(@players[1])
       else
-        end_game(@players[0])
+        puts end_game(@players[0])
       end
     else
       return "Thanks for Playing!"
