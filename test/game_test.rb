@@ -36,6 +36,13 @@ class GameTest < Minitest::Test
     assert_instance_of Player, @game.players[1]
   end
 
+  def test_it_can_create_boards
+    @game.create_boards
+
+    assert_instance_of Board, @game.board1
+    assert_instance_of Board, @game.board2
+  end
+
   # TODO: I don't think we need to test that it CAN place ships
   # that's a board method and was tested there but we should somethow
   # test that it places ships randonly
