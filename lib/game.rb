@@ -19,6 +19,7 @@ class Game
     if user_input == "p"
       create_boards
       create_ships
+      create_players
       place_computer_ships
       computer_message
       puts render_human_board
@@ -64,6 +65,12 @@ class Game
     cruiser2 = Ship.new("Cruiser", 3)
     submarine2 = Ship.new("Submarine", 2)
     @ships2 = [cruiser2, submarine2]
+  end
+
+  def create_players
+    player1 = Player.new("Ada Lovelace", @ships1, @board1)
+    player2 = Player.new("Watson", @ships2, @board2, true)
+    @players = [player1, player2]
   end
 
   def place_computer_ships
