@@ -19,6 +19,16 @@ class Cell
     @ship.hit if @ship
   end
 
+  def shot_result_message
+    if @ship.sunk?
+      " shot on #{@coordinate} sunk a #{@ship.type}."
+    elsif !empty? && @fired_upon
+      " shot on #{@coordinate} hit."
+    else
+      " shot on #{@coordinate} was a miss."
+    end
+  end
+
   def place_ship(ship_object)
     @ship = ship_object
   end
