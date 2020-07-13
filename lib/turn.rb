@@ -31,7 +31,7 @@ class Turn
     valid_cells = @player1.board.get_cells_not_fired_upon
     random_cell = @player1.board.get_random_cell(valid_cells)
     random_cell.fire_upon
-    @p2_shot_cell = randomCell
+    @p2_shot_cell = random_cell
   end
 
   def display_boards
@@ -42,7 +42,7 @@ class Turn
   end
 
   def results
-    "Your " + @p1_shot_cell.shot_result_message + "\n" +
-    "My " + @p2_shot_cell.shot_result_message
+    "Your" + @p1_shot_cell.shot_result_message + "\n" +
+    "My" + @p2_shot_cell.shot_result_message
   end
 end
