@@ -277,4 +277,24 @@ class BoardTest < Minitest::Test
 
     assert_equal 12, @board.get_cells_not_fired_upon.length
   end
+
+  def test_it_can_get_all_cells_adjacent_to_a_cell
+    coordinates1 = @board.adjacent_cells("B2")
+
+    assert coordinates1.include? "B1"
+    assert coordinates1.include? "B3"
+    assert coordinates1.include? "A2"
+    assert coordinates1.include? "C2"
+
+    coordinates2 = @board.adjacent_cells("D4")
+
+    assert coordinates2.include? "C4"
+    assert coordinates2.include? "D3"
+
+    coordinates3 = @board.adjacent_cells("C1")
+
+    assert coordinates3.include? "B1"
+    assert coordinates3.include? "D1"
+    assert coordinates3.include? "C2"
+  end
 end
