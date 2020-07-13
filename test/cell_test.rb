@@ -90,9 +90,6 @@ class CellTest < Minitest::Test
     assert_equal "S", @cell1.render(true)
   end
 
-  def test_it_doesnt_render_S_if_not_occupied_and_opt_arg_provided
-  end
-
   def test_it_renders_a_X_if_occupied_and_ship_sunk
     @cell1.place_ship @cruiser
     @cell1.ship.hit

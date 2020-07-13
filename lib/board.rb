@@ -30,11 +30,11 @@ class Board
   end
 
   def valid_coordinates?(coordinates)
-    coordinates.all? { |coordinate| valid_coordinate?(coordinate) }
-  end
-
-  def valid_coordinate?(coordinate)
-    @cells.key?(coordinate.upcase)
+    if coordinates.is_a?(String)
+      @cells.key?(coordinates.upcase)
+    else
+      coordinates.all? { |coordinate| @cells.key?(coordinate.upcase) }
+    end
   end
 
   def get_cells_not_fired_upon
