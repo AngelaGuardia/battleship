@@ -1,5 +1,8 @@
 class Game
-  attr_reader :players
+  attr_reader :players,
+              :board1,
+              :board2
+
   def initialize(players)
     @players = players
   end
@@ -12,6 +15,7 @@ class Game
     puts print_main_menu
     user_input = get_user_input
     if user_input == "p"
+      create_boards
       place_computer_ships
       computer_message
       puts render_human_board
@@ -42,6 +46,11 @@ class Game
       return get_user_input
     end
     user_input
+  end
+
+  def create_boards
+    @board1 = Board.new
+    @board2 = Board.new
   end
 
   def place_computer_ships
