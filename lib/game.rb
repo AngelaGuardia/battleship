@@ -123,4 +123,42 @@ class Game
       "You won! Woot woot!"
     end
   end
+
+  def custom_board_width_message
+    puts "Would you like to set a custom board width? Enter y to enter a custom board width. Enter n to continue."
+    user_input = gets.chomp.downcase
+    if (user_input == "y")
+      puts "Please enter a number for what you want the width of the board to be."
+      user_input = gets.chomp.downcase.to_i
+      unless user_input.is_a(Integer) && user_input > 1
+        puts "Invalid input. Please enter a positive whole number. For example 5 10 or 8 are all valid options"
+        user_input = gets.chomp.downcase.to_i
+      end
+      puts "Setting the board width to be #{user_input}"
+      @players.each do |player|
+        player.board.set_width(user_input)
+      end
+    else
+      puts "Continuing with the default width of 4."
+    end
+  end
+
+  def custom_board_width_message
+    puts "Would you like to set a custom board height? Enter y to enter a custom board height. Enter n to continue."
+    user_input = gets.chomp.downcase
+    if (user_input == "y")
+      puts "Please enter a number for what you want the height of the board to be."
+      user_input = gets.chomp.downcase.to_i
+      unless user_input.is_a(Integer) && user_input > 1
+        puts "Invalid input. Please enter a positive whole number that is greater than 1. For example 5 10 or 8 are all valid options"
+        user_input = gets.chomp.downcase.to_i
+      end
+      puts "Setting the board width to be #{user_input}"
+      @players.each do |player|
+        player.board.set_height(user_input)
+      end
+    else
+      puts "Continuing with the default height of 4."
+    end
+  end
 end

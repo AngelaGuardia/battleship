@@ -119,4 +119,5 @@ class Board
   def columns
     cells.keys.group_by { |coord| coord[1] }
   end
+
 end
