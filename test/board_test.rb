@@ -322,7 +322,14 @@ class BoardTest < Minitest::Test
   end
 
   def test_it_can_get_cells_from_coords
-    cells1 = @board.adjacent_cells("B1")
+    cells1 = @board.adjacent_cells([@board.cells["B1"], @board.cells["B2"]])
+
+    coordinates = cells1.map { |cell| cell.coordinate }
+    assert coordinates.include? "A1"
+    assert coordinates.include? "A2"
+    assert coordinates.include? "B3"
+    assert coordinates.include? "C1"
+    assert coordinates.include? "C2"
 
     assert_instance_of Cell, cells1.sample
   end
