@@ -43,6 +43,12 @@ class Board
     end
   end
 
+  def get_cells_hit
+    @cells.values.find_all do |cell|
+      cell.render == "H"
+    end
+  end
+
   def get_random_cell(cells)
     cells.shuffle[0]
   end
