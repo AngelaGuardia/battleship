@@ -297,4 +297,10 @@ class BoardTest < Minitest::Test
     assert coordinates3.include? "D1"
     assert coordinates3.include? "C2"
   end
+
+  def test_it_can_get_cells_from_coords
+    cells1 = @board.adjacent_cells("B1")
+
+    assert_instance_of Cell, cells1.sample
+  end
 end
