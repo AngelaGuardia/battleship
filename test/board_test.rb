@@ -281,6 +281,9 @@ class BoardTest < Minitest::Test
   def test_it_can_get_cells_hit
     @board.place(@cruiser, ["A1", "A2", "A3"])
     @board.place(@submarine, ["B1", "B2"])
+
+    assert_equal 0, @board.get_cells_hit.length
+
     @board.cells['A1'].fire_upon
 
     assert_equal 1, @board.get_cells_hit.length
