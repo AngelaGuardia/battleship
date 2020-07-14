@@ -38,9 +38,9 @@ class Board
   end
 
   def get_cells_not_fired_upon(cells = @cells)
-    cells.keys.find_all do |key|
-      !cells[key].fired_upon?
-    end
+    cells.select do |coord, cell|
+      !cell.fired_upon?
+    end.values
   end
 
   def get_cells_hit
