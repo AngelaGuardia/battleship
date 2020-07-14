@@ -7,10 +7,6 @@ class Game
               :ships1,
               :ships2
 
-  def print_main_menu
-    "\n🚢Welcome to BATTLESHIP ⚓ 🏴‍☠️\nEnter p to play. Enter q to quit."
-  end
-
   def start
     puts Messages.main_menu
     user_input = get_user_input
