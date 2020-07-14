@@ -1,8 +1,9 @@
 class Game
-  attr_reader :players
-  def initialize(players)
-    @players = players
-  end
+  attr_reader :players,
+              :board1,
+              :board2,
+              :ships1,
+              :ships2
 
   def print_main_menu
     "\n🚢Welcome to BATTLESHIP ⚓ 🏴‍☠️\nEnter p to play. Enter q to quit."
@@ -12,13 +13,26 @@ class Game
     puts print_main_menu
     user_input = get_user_input
     if user_input == "p"
+      create_boards
+      create_ships
+      create_players
       place_computer_ships
       computer_message
       puts render_human_board
       place_human_ships
-      # turn = Turn.new(@players[0], @players[1])
-      # turn.start
-      puts end_game(turn.game_winner)
+      turn = Turn.new(@players[0], @players[1])
+      until @players[0].has_lost? || @players[1].has_lost?
+        turn.human_shot
+        turn.computer_shot
+        puts turn.results
+        puts turn.display_boards
+      end
+      # puts end_game(turn.game_winner)
+      if @players[0].has_lost?
+        puts end_game(@players[1])
+      else
+        puts end_game(@players[0])
+      end
     else
       return "Thanks for Playing!"
     end
@@ -29,9 +43,30 @@ class Game
     user_input = gets.chomp.downcase
     unless user_input == "q" || user_input == "p"
       puts "Enter p to play. Enter q to quit."
-      get_user_input
+      return get_user_input
     end
     user_input
+  end
+
+  def create_boards
+    @board1 = Board.new
+    @board2 = Board.new
+  end
+
+  def create_ships
+    cruiser1 = Ship.new("Cruiser", 3)
+    submarine1 = Ship.new("Submarine", 2)
+    @ships1 = [cruiser1, submarine1]
+
+    cruiser2 = Ship.new("Cruiser", 3)
+    submarine2 = Ship.new("Submarine", 2)
+    @ships2 = [cruiser2, submarine2]
+  end
+
+  def create_players
+    player1 = Player.new("Ada Lovelace", @ships1, @board1)
+    player2 = Player.new("Watson", @ships2, @board2, true)
+    @players = [player1, player2]
   end
 
   def place_computer_ships
@@ -105,7 +140,7 @@ class Game
   def coordinates_reprompt
     "Those are invalid coordinates. Please try again:\n>"
   end
-  
+
   def end_game(winner)
     if winner.is_computer
       "I won! I'm the AI ruler of the world!"
