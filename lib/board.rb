@@ -37,14 +37,10 @@ class Board
     end
   end
 
-  def get_cells_not_fired_upon
-    unhit_cells = []
-    @cells.keys.each do |key|
-      if !@cells[key].fired_upon?
-        unhit_cells << cells[key]
-      end
+  def get_cells_not_fired_upon(cells = @cells)
+    cells.keys.find_all do |key|
+      !cells[key].fired_upon?
     end
-    unhit_cells
   end
 
   def get_random_cell(cells)
