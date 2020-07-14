@@ -32,7 +32,7 @@ class Game
         puts end_game(@players[0])
       end
     else
-      return "Thanks for Playing!"
+      return Messages.thanks
     end
     start
   end
