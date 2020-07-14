@@ -37,14 +37,16 @@ class Board
     end
   end
 
-  def get_cells_not_fired_upon
-    unhit_cells = []
-    @cells.keys.each do |key|
-      if !@cells[key].fired_upon?
-        unhit_cells << cells[key]
-      end
+  def get_cells_not_fired_upon(cells = @cells.values)
+    cells.find_all do |cell|
+      !cell.fired_upon?
     end
-    unhit_cells
+  end
+
+  def get_cells_hit
+    @cells.values.find_all do |cell|
+      cell.render == "H"
+    end
   end
 
   def get_random_cell(cells)
@@ -118,5 +120,31 @@ class Board
 
   def columns
     cells.keys.group_by { |coord| coord[1] }
+  end
+
+  def adjacent_coords(coord)
+    cons_arrays = []
+    rows[coord[0]].each_cons(2) do |cons_elements|
+      cons_arrays << cons_elements
+    end
+
+    columns[coord[1]].each_cons(2) do |cons_elements|
+      cons_arrays << cons_elements
+    end
+
+    cons_arrays = cons_arrays.find_all do |ary|
+      ary.include?(coord)
+    end
+    cons_arrays.flatten!.uniq!
+    cons_arrays.delete(coord)
+    cons_arrays
+  end
+
+  def adjacent_cells(cells_array)
+    cells_array.map do |cell|
+      adjacent_coords(cell.coordinate).map do |coord|
+        @cells[coord]
+      end
+    end.flatten!
   end
 end

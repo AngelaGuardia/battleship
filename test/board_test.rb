@@ -277,4 +277,60 @@ class BoardTest < Minitest::Test
 
     assert_equal 12, @board.get_cells_not_fired_upon.length
   end
+
+  def test_it_can_get_cells_hit
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+    @board.place(@submarine, ["B1", "B2"])
+
+    assert_equal 0, @board.get_cells_hit.length
+
+    @board.cells['A1'].fire_upon
+
+    assert_equal 1, @board.get_cells_hit.length
+
+    @board.cells['A2'].fire_upon
+
+    assert_equal 2, @board.get_cells_hit.length
+
+    @board.cells['B1'].fire_upon
+
+    assert_equal 3, @board.get_cells_hit.length
+
+    @board.cells['B2'].fire_upon #submarine sunk "X"
+
+    assert_equal 2, @board.get_cells_hit.length
+  end
+
+  def test_it_can_get_all_coords_adjacent_to_a_coord
+    coordinates1 = @board.adjacent_coords("B2")
+
+    assert coordinates1.include? "B1"
+    assert coordinates1.include? "B3"
+    assert coordinates1.include? "A2"
+    assert coordinates1.include? "C2"
+
+    coordinates2 = @board.adjacent_coords("D4")
+
+    assert coordinates2.include? "C4"
+    assert coordinates2.include? "D3"
+
+    coordinates3 = @board.adjacent_coords("C1")
+
+    assert coordinates3.include? "B1"
+    assert coordinates3.include? "D1"
+    assert coordinates3.include? "C2"
+  end
+
+  def test_it_can_get_cells_from_coords
+    cells1 = @board.adjacent_cells([@board.cells["B1"], @board.cells["B2"]])
+
+    coordinates = cells1.map { |cell| cell.coordinate }
+    assert coordinates.include? "A1"
+    assert coordinates.include? "A2"
+    assert coordinates.include? "B3"
+    assert coordinates.include? "C1"
+    assert coordinates.include? "C2"
+
+    assert_instance_of Cell, cells1.sample
+  end
 end

@@ -28,8 +28,15 @@ class Turn
   end
 
   def computer_shot
-    valid_cells = @player1.board.get_cells_not_fired_upon
-    random_cell = @player1.board.get_random_cell(valid_cells)
+    board = @player1.board
+    cells_hit = board.get_cells_hit
+    if !cells_hit.empty?
+      valid_cells = board.get_cells_not_fired_upon(board.adjacent_cells(cells_hit))
+      random_cell = valid_cells.sample
+    else
+      valid_cells = board.get_cells_not_fired_upon
+      random_cell = board.get_random_cell(valid_cells)
+    end
     random_cell.fire_upon
     @p2_shot_cell = random_cell
   end
