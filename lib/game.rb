@@ -1,3 +1,5 @@
+require './lib/messages'
+
 class Game
   attr_reader :players,
               :board1,
@@ -10,7 +12,7 @@ class Game
   end
 
   def start
-    puts print_main_menu
+    puts Messages.main_menu
     user_input = get_user_input
     if user_input == "p"
       create_boards
