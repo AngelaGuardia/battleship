@@ -37,10 +37,10 @@ class Board
     end
   end
 
-  def get_cells_not_fired_upon(cells = @cells)
-    cells.select do |coord, cell|
+  def get_cells_not_fired_upon(cells = @cells.values)
+    cells.find_all do |cell|
       !cell.fired_upon?
-    end.values
+    end
   end
 
   def get_cells_hit
@@ -140,9 +140,11 @@ class Board
     cons_arrays
   end
 
-  def adjacent_cells(coord)
-    adjacent_coords(coord).map do |coord|
-      cells[coord]
-    end
+  def adjacent_cells(cells_array)
+    cells_array.map do |cell|
+      adjacent_coords(cell.coordinate).map do |coord|
+        @cells[coord]
+      end
+    end.flatten!
   end
 end
