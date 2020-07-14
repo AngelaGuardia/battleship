@@ -120,7 +120,7 @@ class Board
     cells.keys.group_by { |coord| coord[1] }
   end
 
-  def adjacent_cells(coord)
+  def adjacent_coords(coord)
     cons_arrays = []
     rows[coord[0]].each_cons(2) do |cons_elements|
       cons_arrays << cons_elements
