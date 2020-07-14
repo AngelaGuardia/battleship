@@ -38,7 +38,7 @@ class Turn
     "=============COMPUTER BOARD=============\n" +
     @player2.board.render +
     "==============PLAYER BOARD==============\n" +
-    @player1.board.render
+    @player1.board.render(true)
   end
 
   def results
