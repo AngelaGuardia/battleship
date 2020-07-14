@@ -104,4 +104,20 @@ class CellTest < Minitest::Test
     assert_equal "X", @cell1.occupied_render(true)
     assert_equal "X", @cell1.render
   end
+
+  def test_shot_result_message
+    @cell2.fire_upon
+
+    assert_equal " shot on A2 was a miss.", @cell2.shot_result_message
+
+    @cell1.place_ship @cruiser
+    @cell1.ship.hit
+
+    assert_equal " shot on B4 hit.", @cell1.shot_result_message
+
+    @cell1.ship.hit
+    @cell1.ship.hit
+
+    assert_equal " shot on B4 sunk a Cruiser.", @cell1.shot_result_message
+  end
 end
