@@ -40,7 +40,7 @@ class Game
   def get_user_input
     user_input = gets.chomp.downcase
     unless user_input == "q" || user_input == "p"
-      puts "Enter p to play. Enter q to quit."
+      puts Messages.play_or_quit
       return get_user_input
     end
     user_input
