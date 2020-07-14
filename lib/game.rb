@@ -1,8 +1,9 @@
 class Game
-  attr_reader :players
-  def initialize(players)
-    @players = players
-  end
+  attr_reader :players,
+              :board1,
+              :board2,
+              :ships1,
+              :ships2
 
   def print_main_menu
     "\n🚢Welcome to BATTLESHIP ⚓ 🏴‍☠️\nEnter p to play. Enter q to quit."
@@ -12,6 +13,9 @@ class Game
     puts print_main_menu
     user_input = get_user_input
     if user_input == "p"
+      create_boards
+      create_ships
+      create_players
       place_computer_ships
       computer_message
       puts render_human_board
@@ -42,6 +46,27 @@ class Game
       return get_user_input
     end
     user_input
+  end
+
+  def create_boards
+    @board1 = Board.new
+    @board2 = Board.new
+  end
+
+  def create_ships
+    cruiser1 = Ship.new("Cruiser", 3)
+    submarine1 = Ship.new("Submarine", 2)
+    @ships1 = [cruiser1, submarine1]
+
+    cruiser2 = Ship.new("Cruiser", 3)
+    submarine2 = Ship.new("Submarine", 2)
+    @ships2 = [cruiser2, submarine2]
+  end
+
+  def create_players
+    player1 = Player.new("Ada Lovelace", @ships1, @board1)
+    player2 = Player.new("Watson", @ships2, @board2, true)
+    @players = [player1, player2]
   end
 
   def place_computer_ships
