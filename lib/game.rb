@@ -157,8 +157,8 @@ class Game
     if (user_input == "y")
       puts "Please enter a number for what you want the width of the board to be."
       user_input = gets.chomp.downcase.to_i
-      unless user_input.class == Integer && user_input > 1 && user_input < 10
-        puts "Invalid input. Please enter a positive whole number from 1-9. For example 5 9 or 8 are all valid options"
+      unless user_input.class == Integer && user_input > 3 && user_input < 10
+        puts "Invalid input. Please enter a positive whole number from 4-9."
         user_input = gets.chomp.downcase.to_i
       end
       puts "Setting the board width to be #{user_input}"
@@ -175,8 +175,8 @@ class Game
     if (user_input == "y")
       puts "Please enter a number for what you want the height of the board to be."
       user_input = gets.chomp.downcase.to_i
-      unless user_input.class == Integer && user_input > 1
-        puts "Invalid input. Please enter a positive whole number that is greater than 1. For example 5 10 or 8 are all valid options"
+      unless user_input.class == Integer && user_input > 3 && user_input < 10
+        puts "Invalid input. Please enter a positive whole number from 4-9."
         user_input = gets.chomp.downcase.to_i
       end
       puts "Setting the board width to be #{user_input}"
