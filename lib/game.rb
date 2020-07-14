@@ -102,7 +102,7 @@ class Game
   def computer_message
     @players.each do |player|
       if !player.is_computer
-        puts "\nI have laid out my ships on the grid.\nYou now need to lay out your two ships.\nThe #{player.ships[0].type} is #{player.ships[0].length} units long and the #{player.ships[1].type} is #{player.ships[1].length} units long.\n"
+        puts Messages.layout player.ships
       end
     end
   end
