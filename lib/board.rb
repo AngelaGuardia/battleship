@@ -137,4 +137,10 @@ class Board
     cons_arrays.delete(coord)
     cons_arrays
   end
+
+  def adjacent_cells(coord)
+    adjacent_coords(coord).map do |coord|
+      cells[coord]
+    end
+  end
 end
