@@ -60,4 +60,12 @@ class CellTest < Minitest::Test
     assert_equal "", Messages.check_end_message(mock_ships, not_last_index)
     assert_equal ".\n", Messages.check_end_message(mock_ships, last_index)
   end
+
+  def test_type_and_length
+    ship1 = {type: "Cruiser", length: 3}
+    ship2 = {type: "Sub", length: 2}
+
+    assert_equal " Cruiser is 3 units long", Messages.type_and_length(ship1)
+    assert_equal " Sub is 2 units long", Messages.type_and_length(ship2)
+  end
 end
