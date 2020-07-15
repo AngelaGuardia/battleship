@@ -6,7 +6,7 @@ require './lib/ship'
 
 class MessagesTest < Minitest::Test
   def test_main_menu_message
-    expected = "\n🚢Welcome to BATTLESHIP ⚓ 🏴‍☠️\nEnter p to play. Enter q to quit."
+    expected = "\n🚢 Welcome to BATTLESHIP ⚓ 🏴‍☠️\nEnter p to play. Enter q to quit."
 
     assert_equal expected, Messages.main_menu
   end
@@ -46,25 +46,23 @@ class MessagesTest < Minitest::Test
   end
 
   def test_custom_board_dimension_prompt
-    expected_height = "Would you like to set a custom board height?\nEnter y to enter a custom board height. Enter n to continue."
-    expected_width = "Would you like to set a custom board width?\nEnter y to enter a custom board width. Enter n to continue."
+    expected = "\nWould you like to set a custom board size? (y/n)\n"
 
-    assert_equal expected_height, Messages.custom_board_dimension_prompt("height")
-    assert_equal expected_width, Messages.custom_board_dimension_prompt("width")
+    assert_equal expected, Messages.custom_board_dimension_prompt
   end
 
-  def test_set_dimension
+  def test_set_dimension_msg
     expected1 = "Setting the board width to be 5"
     expected2 = "Setting the board height to be 7"
 
-    assert_equal(expected1, Messages.set_dimension("width", 5))
-    assert_equal(expected2, Messages.set_dimension("height", 7))
+    assert_equal(expected1, Messages.set_dimension_msg("width", 5))
+    assert_equal(expected2, Messages.set_dimension_msg("height", 7))
   end
 
   def test_enter_pos_num
-    expected = "Please enter a positive whole number from 4-9."
+    expected = "\nPlease enter a positive whole number from 4-9 for the board HEIGHT"
 
-    assert_equal expected, Messages.enter_pos_num
+    assert_equal expected, Messages.enter_pos_num("height")
   end
 
   def test_use_default_dimension
