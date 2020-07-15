@@ -130,10 +130,10 @@ class Game
     @players.each do |player|
       if !player.is_computer
         player.ships.each do |ship|
-          print Messages.coordinates_prompt(ship)
+          puts Messages.coordinates_prompt(ship)
           coordinates = get_human_coordinates
           until player.board.valid_placement?(ship, coordinates)
-            print Messages.coordinates_reprompt
+            puts Messages.coordinates_reprompt
             coordinates = get_human_coordinates
           end
           player.board.place(ship, coordinates)
