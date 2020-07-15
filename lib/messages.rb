@@ -27,6 +27,10 @@ class Messages
     "Please enter a positive whole number from 4-9."
   end
 
+  def self.invalid
+    "Invalid input."
+  end
+
   def self.end_game(winner)
     if winner[:is_computer]
       "I won! I'm the AI ruler of the world!"

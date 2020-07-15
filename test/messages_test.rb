@@ -39,8 +39,12 @@ class CellTest < Minitest::Test
 
   def test_enter_pos_num
     expected = "Please enter a positive whole number from 4-9."
-    
+
     assert_equal expected, Messages.enter_pos_num
+  end
+
+  def test_invalid
+    assert_equal "Invalid input.", Messages.invalid
   end
 
   def test_end_game

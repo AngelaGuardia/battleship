@@ -140,7 +140,7 @@ class Game
       puts Messages.enter_pos_num
       user_input = gets.chomp.downcase.to_i
       unless user_input.class == Integer && user_input > 3 && user_input < 10
-        puts "Invalid input. " + Messages.enter_pos_num
+        puts Messages.invalid + " " + Messages.enter_pos_num
         user_input = gets.chomp.downcase.to_i
       end
       puts "Setting the board width to be #{user_input}"
@@ -158,7 +158,7 @@ class Game
       puts Messages.enter_pos_num
       user_input = gets.chomp.downcase.to_i
       unless user_input.class == Integer && user_input > 3 && user_input < 10
-        puts "Invalid input. " + Messages.enter_pos_num
+        puts Messages.invalid + " " + Messages.enter_pos_num
         user_input = gets.chomp.downcase.to_i
       end
       puts "Setting the board width to be #{user_input}"
