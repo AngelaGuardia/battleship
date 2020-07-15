@@ -19,6 +19,14 @@ class Messages
     "Those are invalid coordinates. Please try again:\n>"
   end
 
+  def self.custom_board_dimension_prompt dimension
+    "Would you like to set a custom board #{dimension}?\nEnter y to enter a custom board #{dimension}. Enter n to continue."
+  end
+
+  def self.enter_pos_num
+    "Please enter a positive whole number from 4-9."
+  end
+
   def self.end_game(winner)
     if winner[:is_computer]
       "I won! I'm the AI ruler of the world!"
