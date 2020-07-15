@@ -62,6 +62,7 @@ class CellTest < Minitest::Test
   end
 
   def test_it_renders_a_period_if_empty_and_not_fired_upon
+    assert_equal ".", @cell1.empty_render
     assert_equal ".", @cell1.render
   end
 
@@ -78,12 +79,14 @@ class CellTest < Minitest::Test
   def test_it_renders_a_M_if_empty_and_fired_upon
     @cell1.fire_upon
 
+    assert_equal "M", @cell1.empty_render
     assert_equal "M", @cell1.render
   end
 
   def test_it_renders_a_period_if_occupied_but_optional_argument_not_provided
     @cell1.place_ship @cruiser
 
+    assert_equal ".", @cell1.occupied_render(false)
     assert_equal ".", @cell1.render
   end
 
@@ -97,6 +100,7 @@ class CellTest < Minitest::Test
     @cell1.place_ship @cruiser
     @cell1.fire_upon
 
+    assert_equal "H", @cell1.occupied_render(true)
     assert_equal "H", @cell1.render
   end
 
@@ -110,6 +114,7 @@ class CellTest < Minitest::Test
   def test_it_renders_S_if_occupied_and_optional_argument_provided
     @cell1.place_ship @cruiser
 
+    assert_equal "S", @cell1.occupied_render(true)
     assert_equal "S", @cell1.render(true)
   end
 
@@ -125,6 +130,7 @@ class CellTest < Minitest::Test
     @cell1.ship.hit
     @cell1.ship.hit
 
+    assert_equal "X", @cell1.occupied_render(true)
     assert_equal "X", @cell1.render
   end
 
@@ -135,5 +141,21 @@ class CellTest < Minitest::Test
     @cell1.ship.hit
 
     assert_equal "X", @cell1.occupied_render
+  end
+
+  def test_shot_result_message
+    @cell2.fire_upon
+
+    assert_equal " shot on A2 was a miss.", @cell2.shot_result_message
+
+    @cell1.place_ship @cruiser
+    @cell1.ship.hit
+
+    assert_equal " shot on B4 hit.", @cell1.shot_result_message
+
+    @cell1.ship.hit
+    @cell1.ship.hit
+
+    assert_equal " shot on B4 sunk a Cruiser.", @cell1.shot_result_message
   end
 end
