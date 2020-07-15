@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
+require 'mocha/minitest'
 require './lib/messages'
 
 class MessagesTest < Minitest::Test
@@ -23,13 +24,18 @@ class MessagesTest < Minitest::Test
 
 
   def test_coordinates_prompt
-    ship1 = {type: "Cruiser", length: 3}
-    ship2 = {type: "Sub", length: 2}
+    mock_ship1 = {}
+    mock_ship2 = {}
+    mock_ship1.stubs(:type).returns("Cruiser")
+    mock_ship1.stubs(:length).returns(3)
+    mock_ship2.stubs(:type).returns("Sub")
+    mock_ship2.stubs(:length).returns(2)
+
     expected1 = "Enter the squares for the Cruiser (3 spaces):\n>"
     expected2 = "Enter the squares for the Sub (2 spaces):\n>"
 
-    assert_equal expected1, Messages.coordinates_prompt(ship1)
-    assert_equal expected2, Messages.coordinates_prompt(ship2)
+    assert_equal expected1, Messages.coordinates_prompt(mock_ship1)
+    assert_equal expected2, Messages.coordinates_prompt(mock_ship2)
   end
 
   def test_coordinates_reprompt
@@ -61,8 +67,8 @@ class MessagesTest < Minitest::Test
   end
 
   def test_use_default_dimension
-    assert_equal "Continuing with the default width of 4.", Messages.use_default_dimension "width"
-    assert_equal "Continuing with the default height of 4.", Messages.use_default_dimension "height"
+    assert_equal "Continuing with the default width of 4.", Messages.use_default_dimension("width")
+    assert_equal "Continuing with the default height of 4.", Messages.use_default_dimension("height")
   end
 
   def test_invalid
@@ -70,8 +76,10 @@ class MessagesTest < Minitest::Test
   end
 
   def test_end_game
-    mock_ai_winner = {is_computer: true}
-    mock_human_winner = {is_computer: false}
+    mock_ai_winner = mock("ai player")
+    mock_human_winner = mock("human player")
+    mock_ai_winner.stubs(:is_computer).returns(true)
+    mock_human_winner.stubs(:is_computer).returns(false)
     expected_ai_win = "I won! I'm the AI ruler of the world!"
     expected_human_win = "You won! Woot woot!"
 
@@ -80,16 +88,22 @@ class MessagesTest < Minitest::Test
   end
 
   def test_layout
-    ship1 = {type: "Cruiser", length: 3}
-    ship2 = {type: "Sub", length: 2}
-    ship3 = {type: "Battleship", length: 4}
-    ships1 = [ship1, ship2, ship3]
-    ships2 = [ship1, ship2]
+    mock_ship1 = mock("ship 1 Cruiser")
+    mock_ship2 = mock("ship 2 Sub")
+    mock_ship3 = mock("ship 3 Battleship")
+    mock_ship1.stubs(:type).returns("Cruiser")
+    mock_ship1.stubs(:length).returns(3)
+    mock_ship2.stubs(:type).returns("Sub")
+    mock_ship2.stubs(:length).returns(2)
+    mock_ship3.stubs(:type).returns("Battleship")
+    mock_ship3.stubs(:length).returns(4)
+    mock_ships1 = [mock_ship1, mock_ship2, mock_ship3]
+    mock_ships2 = [mock_ship1, mock_ship2]
     expected1 = "\nI have laid out my ships on the grid.\nYou now need to lay out your 3 ships.\nThe Cruiser is 3 units long, the Sub is 2 units long, and the Battleship is 4 units long.\n"
     expected2 = "\nI have laid out my ships on the grid.\nYou now need to lay out your 3 ships.\nThe Cruiser is 3 units long, and the Sub is 2 units long.\n"
 
-    assert_equal expected1, Messages.layout(ships1)
-    assert_equal expected2, Messages.layout(ships2)
+    assert_equal expected1, Messages.layout(mock_ships1)
+    assert_equal expected2, Messages.layout(mock_ships2)
   end
 
   def test_conjunction_helper_first_index
@@ -99,11 +113,15 @@ class MessagesTest < Minitest::Test
   end
 
   def test_type_and_length
-    ship1 = {type: "Cruiser", length: 3}
-    ship2 = {type: "Sub", length: 2}
+    mock_ship1 = mock('ship 1')
+    mock_ship2 = mock('ship 2')
+    mock_ship1.stubs(:type).returns("Cruiser")
+    mock_ship1.stubs(:length).returns(3)
+    mock_ship2.stubs(:type).returns("Sub")
+    mock_ship2.stubs(:length).returns(2)
 
-    assert_equal " Cruiser is 3 units long", Messages.type_and_length(ship1)
-    assert_equal " Sub is 2 units long", Messages.type_and_length(ship2)
+    assert_equal " Cruiser is 3 units long", Messages.type_and_length(mock_ship1)
+    assert_equal " Sub is 2 units long", Messages.type_and_length(mock_ship2)
   end
 
   def test_check_end_message
