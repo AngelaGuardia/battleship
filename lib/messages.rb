@@ -1,6 +1,6 @@
 class Messages
   def self.main_menu
-    "\n🚢Welcome to BATTLESHIP ⚓ 🏴‍☠️\nEnter p to play. Enter q to quit."
+    "\n🚢 Welcome to BATTLESHIP ⚓ 🏴‍☠️\nEnter p to play. Enter q to quit."
   end
 
   def self.play_or_quit
@@ -19,16 +19,16 @@ class Messages
     "Those are invalid coordinates. Please try again:\n>"
   end
 
-  def self.custom_board_dimension_prompt dimension_type
-    "Would you like to set a custom board #{dimension_type}?\nEnter y to enter a custom board #{dimension_type}. Enter n to continue."
+  def self.custom_board_dimension_prompt
+    "\nWould you like to set a custom board size? (y/n)\n"
   end
 
-  def self.set_dimension(dimension_type, n)
+  def self.set_dimension_msg(dimension_type, n)
     "Setting the board #{dimension_type} to be #{n}"
   end
 
-  def self.enter_pos_num
-    "Please enter a positive whole number from 4-9."
+  def self.enter_pos_num(dimension)
+    "\nPlease enter a positive whole number from 4-9 for the board #{dimension.upcase}"
   end
 
   def self.use_default_dimension dimension
