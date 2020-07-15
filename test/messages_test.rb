@@ -61,8 +61,9 @@ class CellTest < Minitest::Test
   end
 
   def test_use_default_dimension
-    assert_equal "Continuing with the default width of 4.", Messages.use_default_dimension "width"
-    assert_equal "Continuing with the default height of 4.", Messages.use_default_dimension "height"
+    assert_equal "Continuing with the default width of 4.", Messages.use_default_dimension("width")
+
+    assert_equal "Continuing with the default height of 4.", Messages.use_default_dimension("height")
   end
 
   def test_invalid
