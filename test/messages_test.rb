@@ -9,17 +9,18 @@ class CellTest < Minitest::Test
     assert_equal expected, Messages.main_menu
   end
 
+  def test_play_or_quit
+    expected = "Enter p to play. Enter q to quit."
+
+    assert_equal expected, Messages.play_or_quit
+  end
+
   def test_thanks_for_playing
     expected = "Thanks for Playing!"
 
     assert_equal expected, Messages.thanks
   end
 
-  def test_play_or_quit
-    expected = "Enter p to play. Enter q to quit."
-
-    assert_equal expected, Messages.play_or_quit
-  end
 
   def test_coordinates_prompt
     ship1 = {type: "Cruiser", length: 3}
@@ -37,10 +38,12 @@ class CellTest < Minitest::Test
     assert_equal expected, Messages.coordinates_reprompt
   end
 
-  def test_enter_pos_num
-    expected = "Please enter a positive whole number from 4-9."
+  def test_custom_board_dimension_prompt
+    expected_height = "Would you like to set a custom board height?\nEnter y to enter a custom board height. Enter n to continue."
+    expected_width = "Would you like to set a custom board width?\nEnter y to enter a custom board width. Enter n to continue."
 
-    assert_equal expected, Messages.enter_pos_num
+    assert_equal expected_height, Messages.custom_board_dimension_prompt("height")
+    assert_equal expected_width, Messages.custom_board_dimension_prompt("width")
   end
 
   def test_set_dimension
@@ -51,13 +54,19 @@ class CellTest < Minitest::Test
     assert_equal(expected2, Messages.set_dimension("height", 7))
   end
 
-  def test_invalid
-    assert_equal "Invalid input.", Messages.invalid
+  def test_enter_pos_num
+    expected = "Please enter a positive whole number from 4-9."
+
+    assert_equal expected, Messages.enter_pos_num
   end
 
   def test_use_default_dimension
     assert_equal "Continuing with the default width of 4.", Messages.use_default_dimension "width"
     assert_equal "Continuing with the default height of 4.", Messages.use_default_dimension "height"
+  end
+
+  def test_invalid
+    assert_equal "Invalid input.", Messages.invalid
   end
 
   def test_end_game
@@ -89,6 +98,23 @@ class CellTest < Minitest::Test
     assert_equal "The", Messages.conjunction_helper(mock_ships, 0)
   end
 
+  def test_type_and_length
+    ship1 = {type: "Cruiser", length: 3}
+    ship2 = {type: "Sub", length: 2}
+
+    assert_equal " Cruiser is 3 units long", Messages.type_and_length(ship1)
+    assert_equal " Sub is 2 units long", Messages.type_and_length(ship2)
+  end
+
+  def test_check_end_message
+    mock_ships = [{}, {}, {}]
+    not_last_index = 1
+    last_index = 2
+
+    assert_equal "", Messages.check_end_message(mock_ships, not_last_index)
+    assert_equal ".\n", Messages.check_end_message(mock_ships, last_index)
+  end
+
   def test_conjunction_helper_middle_index
     mock_ships = [{}, {}, {}]
 
@@ -99,30 +125,5 @@ class CellTest < Minitest::Test
     mock_ships = [{}, {}, {}]
 
     assert_equal ", and the", Messages.conjunction_helper(mock_ships, 2)
-  end
-
-  def test_end_message
-    mock_ships = [{}, {}, {}]
-    not_last_index = 1
-    last_index = 2
-
-    assert_equal "", Messages.check_end_message(mock_ships, not_last_index)
-    assert_equal ".\n", Messages.check_end_message(mock_ships, last_index)
-  end
-
-  def test_type_and_length
-    ship1 = {type: "Cruiser", length: 3}
-    ship2 = {type: "Sub", length: 2}
-
-    assert_equal " Cruiser is 3 units long", Messages.type_and_length(ship1)
-    assert_equal " Sub is 2 units long", Messages.type_and_length(ship2)
-  end
-
-  def test_custom_board_dimension_prompt
-    expected_height = "Would you like to set a custom board height?\nEnter y to enter a custom board height. Enter n to continue."
-    expected_width = "Would you like to set a custom board width?\nEnter y to enter a custom board width. Enter n to continue."
-
-    assert_equal expected_height, Messages.custom_board_dimension_prompt("height")
-    assert_equal expected_width, Messages.custom_board_dimension_prompt("width")
   end
 end
