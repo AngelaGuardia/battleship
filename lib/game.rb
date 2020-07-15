@@ -147,12 +147,8 @@ class Game
   end
 
   def custom_board_dimension_message
-    puts Messages.custom_board_dimension_prompt
-    user_input = gets.chomp.downcase
-    until user_input == "y" || user_input == "n"
-      puts Messages.custom_board_dimension_prompt
-      user_input = gets.chomp.downcase
-    end
+    message = Messages.custom_board_dimension_prompt
+    user_input = yes_no_prompt_until(message)
     user_input == "y"
   end
 
@@ -164,6 +160,16 @@ class Game
       user_input = gets.chomp.downcase.to_i
     end
     puts Messages.set_dimension_msg(dimension, user_input)
+    user_input
+  end
+
+  def yes_no_prompt_until(message)
+    puts message
+    user_input = gets.chomp.downcase
+    until user_input == "y" || user_input == "n"
+      puts Messages.invalid + " " + message
+      user_input = gets.chomp.downcase
+    end
     user_input
   end
 end
