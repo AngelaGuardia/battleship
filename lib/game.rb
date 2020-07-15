@@ -134,13 +134,13 @@ class Game
   end
 
   def custom_board_width_message
-    puts "Would you like to set a custom board width?\nEnter y to enter a custom board width. Enter n to continue."
+    puts Messages.custom_board_dimension_prompt "width"
     user_input = gets.chomp.downcase
     if (user_input == "y")
-      puts "Please enter a number for what you want the width of the board to be."
+      puts Messages.enter_pos_num
       user_input = gets.chomp.downcase.to_i
       unless user_input.class == Integer && user_input > 3 && user_input < 10
-        puts "Invalid input. Please enter a positive whole number from 4-9."
+        puts "Invalid input. " + Messages.enter_pos_num
         user_input = gets.chomp.downcase.to_i
       end
       puts "Setting the board width to be #{user_input}"
@@ -152,13 +152,13 @@ class Game
   end
 
   def custom_board_height_message
-    puts "Would you like to set a custom board height?\nEnter y to enter a custom board height. Enter n to continue."
+    puts Messages.custom_board_dimension_prompt "height"
     user_input = gets.chomp.downcase
     if (user_input == "y")
-      puts "Please enter a number for what you want the height of the board to be."
+      puts Messages.enter_pos_num
       user_input = gets.chomp.downcase.to_i
       unless user_input.class == Integer && user_input > 3 && user_input < 10
-        puts "Invalid input. Please enter a positive whole number from 4-9."
+        puts "Invalid input. " + Messages.enter_pos_num
         user_input = gets.chomp.downcase.to_i
       end
       puts "Setting the board width to be #{user_input}"
