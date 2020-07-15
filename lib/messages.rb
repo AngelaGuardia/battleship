@@ -12,7 +12,7 @@ class Messages
   end
 
   def self.coordinates_prompt(ship)
-    "Enter the squares for the #{ship[:type]} (#{ship[:length]} spaces):\n>"
+    "Enter the squares for the #{ship.type} (#{ship.length} spaces):\n>"
   end
 
   def self.coordinates_reprompt
@@ -40,7 +40,7 @@ class Messages
   end
 
   def self.end_game(winner)
-    if winner[:is_computer]
+    if winner.is_computer
       "I won! I'm the AI ruler of the world!"
     else
       "You won! Woot woot!"
@@ -58,7 +58,7 @@ class Messages
   end
 
   def self.type_and_length ship
-    " #{ship[:type]} is #{ship[:length]} units long"
+    " #{ship.type} is #{ship.length} units long"
   end
 
   def self.check_end_message(ships, curr_i)
