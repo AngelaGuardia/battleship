@@ -47,8 +47,8 @@ class Game
   end
 
   def create_boards
-    width = custom_board_width_message
-    height = custom_board_height_message
+    width = custom_board_dimension_message "width"
+    height = custom_board_dimension_message "height"
     @board1 = Board.new(width, height)
     @board2 = Board.new(width, height)
   end
@@ -133,8 +133,8 @@ class Game
     gets.chomp.upcase.split(" ")
   end
 
-  def custom_board_width_message
-    puts Messages.custom_board_dimension_prompt "width"
+  def custom_board_dimension_message dimension
+    puts Messages.custom_board_dimension_prompt dimension
     user_input = gets.chomp.downcase
     if (user_input == "y")
       puts Messages.enter_pos_num
@@ -143,30 +143,11 @@ class Game
         puts Messages.invalid + " " + Messages.enter_pos_num
         user_input = gets.chomp.downcase.to_i
       end
-      puts Messages.set_dimension "width" user_input
+      puts Messages.set_dimension dimension user_input
       user_input
     else
-      puts Messages.use_default_dimension "width"
+      puts Messages.use_default_dimension dimension
       4
     end
   end
-
-  def custom_board_height_message
-    puts Messages.custom_board_dimension_prompt "height"
-    user_input = gets.chomp.downcase
-    if (user_input == "y")
-      puts Messages.enter_pos_num
-      user_input = gets.chomp.downcase.to_i
-      unless user_input.class == Integer && user_input > 3 && user_input < 10
-        puts Messages.invalid + " " + Messages.enter_pos_num
-        user_input = gets.chomp.downcase.to_i
-      end
-      puts Messages.set_dimension "height" user_input
-      user_input
-    else
-      puts Messages.use_default_dimension "height"
-      4
-    end
-  end
-
 end
