@@ -13,7 +13,7 @@ class Game
       take_turns
       check_has_lost
     else
-      return Messages.thanks
+      return puts Messages.thanks
     end
     start
   end
@@ -56,10 +56,15 @@ class Game
   end
 
   def create_boards
-    width = custom_board_dimension_message "width"
-    height = custom_board_dimension_message "height"
-    @board1 = Board.new(width, height)
-    @board2 = Board.new(width, height)
+    if custom_board_dimension_message
+      width = set_dimension("width")
+      height = set_dimension("height")
+    else
+      width = 4
+      height = 4
+    end
+    @board1 = Board.new(height, width)
+    @board2 = Board.new(height, width)
   end
 
   def create_ships
@@ -107,7 +112,6 @@ class Game
     random_arrays.sample
   end
 
-  # TODO: will need to be modified to handle multiple ships in iteration 4
   def computer_message
     @players.each do |player|
       if !player.is_computer
@@ -142,21 +146,24 @@ class Game
     gets.chomp.upcase.split(" ")
   end
 
-  def custom_board_dimension_message dimension
-    puts Messages.custom_board_dimension_prompt dimension
+  def custom_board_dimension_message
+    puts Messages.custom_board_dimension_prompt
     user_input = gets.chomp.downcase
-    if (user_input == "y")
-      puts Messages.enter_pos_num
-      user_input = gets.chomp.downcase.to_i
-      until user_input.class == Integer && user_input > 3 && user_input < 10
-        puts Messages.invalid + " " + Messages.enter_pos_num
-        user_input = gets.chomp.downcase.to_i
-      end
-      puts Messages.set_dimension(dimension, user_input)
-      user_input
-    else
-      puts Messages.use_default_dimension dimension
-      4
+    until user_input == "y" || user_input == "n"
+      puts Messages.custom_board_dimension_prompt
+      user_input = gets.chomp.downcase
     end
+    user_input == "y"
+  end
+
+  def set_dimension(dimension)
+    puts Messages.enter_pos_num(dimension)
+    user_input = gets.chomp.downcase.to_i
+    until user_input > 3 && user_input < 10
+      puts Messages.invalid + " " + Messages.enter_pos_num
+      user_input = gets.chomp.downcase.to_i
+    end
+    puts Messages.set_dimension_msg(dimension, user_input)
+    user_input
   end
 end
