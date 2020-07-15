@@ -1,5 +1,6 @@
 require "minitest/autorun"
 require "minitest/pride"
+require 'mocha/minitest'
 require "./lib/ship"
 require "./lib/cell"
 require "./lib/board"
@@ -9,6 +10,8 @@ require "./lib/game"
 class GameTest < Minitest::Test
   def setup
     @game = Game.new
+    @game.stubs(:custom_board_width_message).returns(4)
+    @game.stubs(:custom_board_height_message).returns(4)
     @game.create_boards
     @game.create_ships
     @game.create_players
@@ -17,9 +20,6 @@ class GameTest < Minitest::Test
   def test_it_exists
     assert_instance_of Game, @game
   end
-
-  #can't test_it_prints_out_main_menu
-  #can't test_get_user_input
 
   def test_it_can_create_boards
     assert_instance_of Board, @game.board1
@@ -36,12 +36,6 @@ class GameTest < Minitest::Test
   def test_it_can_create_players
     assert_instance_of Player, @game.players[0]
     assert_instance_of Player, @game.players[1]
-  end
-
-  # TODO: I don't think we need to test that it CAN place ships
-  # that's a board method and was tested there but we should somethow
-  # test that it places ships randonly
-  def test_it_can_randomly_place_computer_ships_on_the_board
   end
 
   def test_it_can_generate_random_valid_coordinates

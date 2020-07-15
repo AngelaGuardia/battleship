@@ -35,22 +35,6 @@ class Board
     end
   end
 
-  def get_cells_not_fired_upon(cells = @cells.values)
-    cells.find_all do |cell|
-      !cell.fired_upon?
-    end
-  end
-
-  def get_cells_hit
-    @cells.values.find_all do |cell|
-      cell.render == "H"
-    end
-  end
-
-  def get_random_cell(cells)
-    cells.shuffle[0]
-  end
-
   def valid_length?(ship, coordinates)
     ship.length == coordinates.length
   end
@@ -118,6 +102,22 @@ class Board
 
   def columns
     cells.keys.group_by { |coord| coord[1] }
+  end
+
+  def get_cells_not_fired_upon(cells = @cells.values)
+    cells.find_all do |cell|
+      !cell.fired_upon?
+    end
+  end
+
+  def get_cells_hit
+    @cells.values.find_all do |cell|
+      cell.render == "H"
+    end
+  end
+
+  def get_random_cell(cells)
+    cells.shuffle[0]
   end
 
   def adjacent_coords(coord)

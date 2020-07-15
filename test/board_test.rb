@@ -35,14 +35,6 @@ class BoardTest < Minitest::Test
     assert_equal ["1", "2", "3", "4", "5", "6"], board.board_numbers
   end
 
-  def test_board_renders_top_row
-    board = Board.new(6 , 6)
-    board2 = Board.new(10 , 10)
-
-    assert_equal "  1 2 3 4 5 6 \n", board.render_top_row
-    assert_equal "  1 2 3 4 5 6 7 8 9 10 \n", board2.render_top_row
-  end
-
   def test_it_generates_and_stores_cells_default
     board_cells = @board.cells
     board_cell_values = board_cells.values
@@ -126,6 +118,7 @@ class BoardTest < Minitest::Test
 
   def test_it_knows_a_ship_has_a_valid_placement
     assert_equal true, @board.valid_placement?(@submarine, ["A1", "A2"])
+    assert_equal false, @board.valid_placement?(@submarine, ["A2", "A2"])
     assert_equal true, @board.valid_placement?(@cruiser, ["A2", "A3", "A4"])
     assert_equal false, @board.valid_placement?(@cruiser, ["A3", "A4", "A5"])
   end
@@ -239,6 +232,14 @@ class BoardTest < Minitest::Test
                                    "C . . . . . . \n"
 
     assert_equal expected_board2_render_true, board2.render(true)
+  end
+
+  def test_board_renders_top_row
+    board = Board.new(6 , 6)
+    board2 = Board.new(10 , 10)
+
+    assert_equal "  1 2 3 4 5 6 \n", board.render_top_row
+    assert_equal "  1 2 3 4 5 6 7 8 9 10 \n", board2.render_top_row
   end
 
   def test_it_can_make_a_hash_of_rows
