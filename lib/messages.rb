@@ -19,6 +19,14 @@ class Messages
     "Those are invalid coordinates. Please try again:\n>"
   end
 
+  def self.end_game(winner)
+    if winner[:is_computer]
+      "I won! I'm the AI ruler of the world!"
+    else
+      "You won! Woot woot!"
+    end
+  end
+
   def self.layout ships
     message = "\nI have laid out my ships on the grid.\nYou now need to lay out your 3 ships.\n"
     ships.each_with_index do |ship, curr_i|

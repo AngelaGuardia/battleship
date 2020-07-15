@@ -27,9 +27,9 @@ class Game
       end
       # puts end_game(turn.game_winner)
       if @players[0].has_lost?
-        puts end_game(@players[1])
+        puts Messages.end_game(@players[1])
       else
-        puts end_game(@players[0])
+        puts Messages.end_game(@players[0])
       end
     else
       return Messages.thanks
@@ -131,14 +131,6 @@ class Game
 
   def get_human_coordinates
     gets.chomp.upcase.split(" ")
-  end
-
-  def end_game(winner)
-    if winner.is_computer
-      "I won! I'm the AI ruler of the world!"
-    else
-      "You won! Woot woot!"
-    end
   end
 
   def custom_board_width_message

@@ -37,6 +37,16 @@ class CellTest < Minitest::Test
     assert_equal expected, Messages.coordinates_reprompt
   end
 
+  def test_end_game
+    mock_ai_winner = {is_computer: true}
+    mock_human_winner = {is_computer: false}
+    expected_ai_win = "I won! I'm the AI ruler of the world!"
+    expected_human_win = "You won! Woot woot!"
+
+    assert_equal expected_ai_win, Messages.end_game(mock_ai_winner)
+    assert_equal expected_human_win, Messages.end_game(mock_human_winner)
+  end
+
   def test_layout
     ship1 = {type: "Cruiser", length: 3}
     ship2 = {type: "Sub", length: 2}
