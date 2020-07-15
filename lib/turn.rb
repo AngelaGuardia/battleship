@@ -8,23 +8,15 @@ class Turn
   end
 
   def human_shot
-    p enter_coord_msg
+    p Messages.enter_coord_msg
     input = gets.chomp.upcase
     while (!@player2.board.valid_coordinates?(input))
-      p not_valid_coord_msg
+      p Messages.not_valid_coord_msg
       input = gets.chomp.upcase
     end
     targetCell = @player2.board.cells[input]
     targetCell.fire_upon
     @p1_shot_cell = targetCell
-  end
-
-  def enter_coord_msg
-    "Enter the coordinate for your shot:"
-  end
-
-  def not_valid_coord_msg
-    "Please enter a valid coordinate:"
   end
 
   def computer_shot

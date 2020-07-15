@@ -148,7 +148,7 @@ class Game
     if (user_input == "y")
       puts Messages.enter_pos_num
       user_input = gets.chomp.downcase.to_i
-      unless user_input.class == Integer && user_input > 3 && user_input < 10
+      until user_input.class == Integer && user_input > 3 && user_input < 10
         puts Messages.invalid + " " + Messages.enter_pos_num
         user_input = gets.chomp.downcase.to_i
       end

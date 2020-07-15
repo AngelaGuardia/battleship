@@ -2,6 +2,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require 'mocha/minitest'
 require './lib/messages'
+require './lib/ship'
 
 class MessagesTest < Minitest::Test
   def test_main_menu_message
@@ -143,5 +144,13 @@ class MessagesTest < Minitest::Test
     mock_ships = [{}, {}, {}]
 
     assert_equal ", and the", Messages.conjunction_helper(mock_ships, 2)
+  end
+
+  def test_enter_coord_msg
+    assert_equal "Enter the coordinate for your shot:", Messages.enter_coord_msg
+  end
+
+  def test_not_valid_coord_msg
+    assert_equal "Please enter a valid coordinate:", Messages.not_valid_coord_msg
   end
 end
