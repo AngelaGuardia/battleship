@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/messages'
+require './lib/ship'
 
 class CellTest < Minitest::Test
   def test_main_menu_message
@@ -23,8 +24,8 @@ class CellTest < Minitest::Test
 
 
   def test_coordinates_prompt
-    ship1 = {type: "Cruiser", length: 3}
-    ship2 = {type: "Sub", length: 2}
+    ship1 = Ship.new("Cruiser", 3)
+    ship2 = Ship.new("Sub", 2)
     expected1 = "Enter the squares for the Cruiser (3 spaces):\n>"
     expected2 = "Enter the squares for the Sub (2 spaces):\n>"
 
@@ -81,9 +82,9 @@ class CellTest < Minitest::Test
   end
 
   def test_layout
-    ship1 = {type: "Cruiser", length: 3}
-    ship2 = {type: "Sub", length: 2}
-    ship3 = {type: "Battleship", length: 4}
+    ship1 = Ship.new("Cruiser", 3)
+    ship2 = Ship.new("Sub", 2)
+    ship3 = Ship.new("Battleship", 4)
     ships1 = [ship1, ship2, ship3]
     ships2 = [ship1, ship2]
     expected1 = "\nI have laid out my ships on the grid.\nYou now need to lay out your 3 ships.\nThe Cruiser is 3 units long, the Sub is 2 units long, and the Battleship is 4 units long.\n"
@@ -100,8 +101,8 @@ class CellTest < Minitest::Test
   end
 
   def test_type_and_length
-    ship1 = {type: "Cruiser", length: 3}
-    ship2 = {type: "Sub", length: 2}
+    ship1 = Ship.new("Cruiser", 3)
+    ship2 = Ship.new("Sub", 2)
 
     assert_equal " Cruiser is 3 units long", Messages.type_and_length(ship1)
     assert_equal " Sub is 2 units long", Messages.type_and_length(ship2)
