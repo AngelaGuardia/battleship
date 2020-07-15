@@ -16,18 +16,27 @@ class Messages
     ships.each_with_index do |ship, curr_i|
       message += Messages.conjunction_helper(ships, curr_i)
       message += " #{ship[:type]} is #{ship[:length]} units long"
-      if is_last
-        message += ".\n"
-      end
+      message += Messages.check_end_message(ships, curr_i)
     end
     message
+  end
+
+  def self.check_end_message(ships, curr_i)
+    last_i = ships.length - 1
+    is_last = curr_i == last_i
+    
+    if is_last
+      ".\n"
+    else
+      ""
+    end
   end
 
   def self.conjunction_helper(ships, curr_i)
     last_i = ships.length - 1
     is_first = curr_i == 0
     is_last = curr_i == last_i
-    
+
     if is_first
       "The"
     elsif is_last
