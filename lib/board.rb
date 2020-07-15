@@ -1,5 +1,3 @@
-require './lib/cell'
-
 class Board
   attr_reader :cells, :height
   def initialize(height = 4, width = 4)
