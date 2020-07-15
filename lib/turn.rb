@@ -44,9 +44,4 @@ class Turn
     "Your" + @p1_shot_cell.shot_result_message + "\n" +
     "My" + @p2_shot_cell.shot_result_message
   end
-
-  def results
-    "Your " + @p1_shot_cell.shot_result_message + "\n" +
-    "My " + @p2_shot_cell.shot_result_message
-  end
 end
