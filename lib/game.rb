@@ -143,7 +143,7 @@ class Game
         puts Messages.invalid + " " + Messages.enter_pos_num
         user_input = gets.chomp.downcase.to_i
       end
-      puts Messages.set_dimension dimension user_input
+      puts Messages.set_dimension(dimension, user_input)
       user_input
     else
       puts Messages.use_default_dimension dimension
