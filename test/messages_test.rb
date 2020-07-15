@@ -37,6 +37,12 @@ class CellTest < Minitest::Test
     assert_equal expected, Messages.coordinates_reprompt
   end
 
+  def test_enter_pos_num
+    expected = "Please enter a positive whole number from 4-9."
+    
+    assert_equal expected, Messages.enter_pos_num
+  end
+
   def test_end_game
     mock_ai_winner = {is_computer: true}
     mock_human_winner = {is_computer: false}
@@ -93,5 +99,13 @@ class CellTest < Minitest::Test
 
     assert_equal " Cruiser is 3 units long", Messages.type_and_length(ship1)
     assert_equal " Sub is 2 units long", Messages.type_and_length(ship2)
+  end
+
+  def test_custom_board_dimension_prompt
+    expected_height = "Would you like to set a custom board height?\nEnter y to enter a custom board height. Enter n to continue."
+    expected_width = "Would you like to set a custom board width?\nEnter y to enter a custom board width. Enter n to continue."
+
+    assert_equal expected_height, Messages.custom_board_dimension_prompt("height")
+    assert_equal expected_width, Messages.custom_board_dimension_prompt("width")
   end
 end
