@@ -2,6 +2,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/board'
 require './lib/ship'
+require './lib/cell'
 require './lib/player'
 require './lib/turn'
 
