@@ -11,30 +11,41 @@ class Game
     puts Messages.main_menu
     user_input = get_user_input
     if user_input == "p"
-      create_boards
-      create_ships
-      create_players
-      place_computer_ships
-      computer_message
-      puts render_human_board
-      place_human_ships
-      turn = Turn.new(@players[0], @players[1])
-      until @players[0].has_lost? || @players[1].has_lost?
-        turn.human_shot
-        turn.computer_shot
-        puts turn.results
-        puts turn.display_boards
-      end
-      # puts end_game(turn.game_winner)
-      if @players[0].has_lost?
-        puts Messages.end_game(@players[1])
-      else
-        puts Messages.end_game(@players[0])
-      end
+      setup_game
+      take_turns
+      check_has_lost
     else
       return Messages.thanks
     end
     start
+  end
+
+  def setup_game
+    create_boards
+    create_ships
+    create_players
+    place_computer_ships
+    computer_message
+    puts render_human_board
+    place_human_ships
+  end
+
+  def take_turns
+    turn = Turn.new(@players[0], @players[1])
+    until @players[0].has_lost? || @players[1].has_lost?
+      turn.human_shot
+      turn.computer_shot
+      puts turn.results
+      puts turn.display_boards
+    end
+  end
+
+  def check_has_lost
+    if @players[0].has_lost?
+      puts Messages.end_game(@players[1])
+    else
+      puts Messages.end_game(@players[0])
+    end
   end
 
   def get_user_input
