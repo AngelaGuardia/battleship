@@ -21,6 +21,16 @@ class CellTest < Minitest::Test
     assert_equal expected, Messages.play_or_quit
   end
 
+  def test_coordinates_prompt
+    ship1 = {type: "Cruiser", length: 3}
+    ship2 = {type: "Sub", length: 2}
+    expected1 = "Enter the squares for the Cruiser (3 spaces):\n>"
+    expected2 = "Enter the squares for the Sub (2 spaces):\n>"
+
+    assert_equal expected1, Messages.coordinates_prompt(ship1)
+    assert_equal expected2, Messages.coordinates_prompt(ship2)
+  end
+
   def test_layout
     ship1 = {type: "Cruiser", length: 3}
     ship2 = {type: "Sub", length: 2}
