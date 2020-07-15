@@ -143,7 +143,7 @@ class Game
         puts Messages.invalid + " " + Messages.enter_pos_num
         user_input = gets.chomp.downcase.to_i
       end
-      puts "Setting the board width to be #{user_input}"
+      puts Messages.set_dimension "width" user_input
       user_input
     else
       puts "Continuing with the default width of 4."
@@ -161,7 +161,7 @@ class Game
         puts Messages.invalid + " " + Messages.enter_pos_num
         user_input = gets.chomp.downcase.to_i
       end
-      puts "Setting the board width to be #{user_input}"
+      puts Messages.set_dimension "height" user_input
       user_input
     else
       puts "Continuing with the default height of 4."
