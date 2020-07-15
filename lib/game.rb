@@ -146,7 +146,7 @@ class Game
       puts Messages.set_dimension "width" user_input
       user_input
     else
-      puts "Continuing with the default width of 4."
+      puts Messages.use_default_dimension "width"
       4
     end
   end
@@ -164,7 +164,7 @@ class Game
       puts Messages.set_dimension "height" user_input
       user_input
     else
-      puts "Continuing with the default height of 4."
+      puts Messages.use_default_dimension "height"
       4
     end
   end
