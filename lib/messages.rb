@@ -31,6 +31,10 @@ class Messages
     "Please enter a positive whole number from 4-9."
   end
 
+  def self.use_default_dimension dimension
+    "Continuing with the default #{dimension} of 4."
+  end
+
   def self.invalid
     "Invalid input."
   end
