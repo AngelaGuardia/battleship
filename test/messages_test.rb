@@ -25,4 +25,31 @@ class CellTest < Minitest::Test
     assert_equal Messages.layout(ships1), "\nI have laid out my ships on the grid.\nYou now need to lay out your 3 ships.\nThe Cruiser is 3 units long, the Sub is 2 units long, and the Battleship is 4 units long.\n"
     assert_equal Messages.layout(ships2), "\nI have laid out my ships on the grid.\nYou now need to lay out your 3 ships.\nThe Cruiser is 3 units long, and the Sub is 2 units long.\n"
   end
+
+  def test_conjunction_helper_first_index
+    ship1 = {type: "Cruiser", length: 3}
+    ship2 = {type: "Sub", length: 2}
+    ship3 = {type: "Battleship", length: 4}
+    ships = [ship1, ship2, ship3]
+
+    assert_equal Messages.conjunction_helper(ships, 0), "The"
+  end
+
+  def test_conjunction_helper_middle_index
+    ship1 = {type: "Cruiser", length: 3}
+    ship2 = {type: "Sub", length: 2}
+    ship3 = {type: "Battleship", length: 4}
+    ships = [ship1, ship2, ship3]
+
+    assert_equal Messages.conjunction_helper(ships, 1), ", the"
+  end
+
+  def test_conjunction_helper_last_index
+    ship1 = {type: "Cruiser", length: 3}
+    ship2 = {type: "Sub", length: 2}
+    ship3 = {type: "Battleship", length: 4}
+    ships = [ship1, ship2, ship3]
+
+    assert_equal Messages.conjunction_helper(ships, 2), ", and the"
+  end
 end
