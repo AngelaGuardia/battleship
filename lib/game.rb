@@ -13,7 +13,7 @@ class Game
       take_turns
       check_has_lost
     else
-      return Messages.thanks
+      puts Messages.thanks
     end
     start
   end
