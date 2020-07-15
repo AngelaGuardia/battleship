@@ -1,5 +1,6 @@
 require "minitest/autorun"
 require "minitest/pride"
+require 'mocha/minitest'
 require "./lib/ship"
 require "./lib/cell"
 require "./lib/board"
@@ -9,6 +10,8 @@ require "./lib/game"
 class GameTest < Minitest::Test
   def setup
     @game = Game.new
+    @game.stubs(:custom_board_width_message).returns(4)
+    @game.stubs(:custom_board_height_message).returns(4)
     @game.create_boards
     @game.create_ships
     @game.create_players

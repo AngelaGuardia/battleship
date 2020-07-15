@@ -93,7 +93,7 @@ class CellTest < Minitest::Test
   def test_occupied_renders_a_period_if_occupied_but_optional_argument_not_provided
     @cell1.place_ship @cruiser
 
-    assert_equal ".", @cell1.occupied_render
+    assert_equal ".", @cell1.occupied_render(false)
   end
 
   def test_it_renders_H_if_occupied_and_fired_upon
@@ -108,7 +108,7 @@ class CellTest < Minitest::Test
     @cell1.place_ship @cruiser
     @cell1.fire_upon
 
-    assert_equal "H", @cell1.occupied_render
+    assert_equal "H", @cell1.occupied_render(true)
   end
 
   def test_it_renders_S_if_occupied_and_optional_argument_provided
@@ -140,7 +140,7 @@ class CellTest < Minitest::Test
     @cell1.ship.hit
     @cell1.ship.hit
 
-    assert_equal "X", @cell1.occupied_render
+    assert_equal "X", @cell1.occupied_render(true)
   end
 
   def test_shot_result_message
