@@ -15,6 +15,10 @@ class Messages
     "Enter the squares for the #{ship[:type]} (#{ship[:length]} spaces):\n>"
   end
 
+  def self.coordinates_reprompt
+    "Those are invalid coordinates. Please try again:\n>"
+  end
+
   def self.layout ships
     message = "\nI have laid out my ships on the grid.\nYou now need to lay out your 3 ships.\n"
     ships.each_with_index do |ship, curr_i|

@@ -120,7 +120,7 @@ class Game
           print Messages.coordinates_prompt(ship)
           coordinates = get_human_coordinates
           until player.board.valid_placement?(ship, coordinates)
-            print coordinates_reprompt
+            print Messages.coordinates_reprompt
             coordinates = get_human_coordinates
           end
           player.board.place(ship, coordinates)
@@ -131,10 +131,6 @@ class Game
 
   def get_human_coordinates
     gets.chomp.upcase.split(" ")
-  end
-
-  def coordinates_reprompt
-    "Those are invalid coordinates. Please try again:\n>"
   end
 
   def end_game(winner)

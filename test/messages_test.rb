@@ -31,6 +31,12 @@ class CellTest < Minitest::Test
     assert_equal expected2, Messages.coordinates_prompt(ship2)
   end
 
+  def test_coordinates_reprompt
+    expected = "Those are invalid coordinates. Please try again:\n>"
+
+    assert_equal expected, Messages.coordinates_reprompt
+  end
+
   def test_layout
     ship1 = {type: "Cruiser", length: 3}
     ship2 = {type: "Sub", length: 2}
