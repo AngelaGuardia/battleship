@@ -85,4 +85,12 @@ class Messages
       ", the"
     end
   end
+
+  def self.enter_coord_msg
+    "Enter the coordinate for your shot:"
+  end
+
+  def self.not_valid_coord_msg
+    "Please enter a valid coordinate:"
+  end
 end
