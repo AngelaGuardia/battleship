@@ -19,8 +19,12 @@ class Messages
     "Those are invalid coordinates. Please try again:\n>"
   end
 
-  def self.custom_board_dimension_prompt dimension
-    "Would you like to set a custom board #{dimension}?\nEnter y to enter a custom board #{dimension}. Enter n to continue."
+  def self.custom_board_dimension_prompt dimension_type
+    "Would you like to set a custom board #{dimension_type}?\nEnter y to enter a custom board #{dimension_type}. Enter n to continue."
+  end
+
+  def self.set_dimension(dimension_type, n)
+    "Setting the board #{dimension_type} to be #{n}"
   end
 
   def self.enter_pos_num
