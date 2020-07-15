@@ -43,6 +43,14 @@ class CellTest < Minitest::Test
     assert_equal expected, Messages.enter_pos_num
   end
 
+  def test_set_dimension
+    expected1 = "Setting the board width to be 5"
+    expected2 = "Setting the board height to be 7"
+
+    assert_equal(expected1, Messages.set_dimension("width", 5))
+    assert_equal(expected2, Messages.set_dimension("height", 7))
+  end
+
   def test_invalid
     assert_equal "Invalid input.", Messages.invalid
   end
