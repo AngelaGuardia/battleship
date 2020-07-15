@@ -5,13 +5,14 @@ require "./lib/ship"
 require "./lib/cell"
 require "./lib/board"
 require "./lib/player"
+require "./lib/messages"
 require "./lib/game"
 
 class GameTest < Minitest::Test
   def setup
     @game = Game.new
-    @game.stubs(:custom_board_dimension_message).returns(4)
-    @game.stubs(:custom_board_dimension_message).returns(4)
+    @game.stubs(:custom_board_dimension_message)
+    @game.stubs(:set_dimension).returns(4)
     @game.create_boards
     @game.create_ships
     @game.create_players
