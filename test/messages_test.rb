@@ -74,6 +74,13 @@ class MessagesTest < Minitest::Test
     assert_equal "Invalid input.", Messages.invalid
   end
 
+  def test_repeat_hit_warning
+    mock_cell = mock('cell 1')
+    mock_cell.stubs(:coordinate).returns("B2")
+
+    assert_equal "*** WARNING FIRED ON B2 PREVIOUSLY ***", Messages.repeat_hit_warning(mock_cell)
+  end
+
   def test_end_game
     mock_ai_winner = mock("ai player")
     mock_human_winner = mock("human player")

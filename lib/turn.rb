@@ -15,6 +15,7 @@ class Turn
       input = gets.chomp.upcase
     end
     targetCell = @player2.board.cells[input]
+    puts Messages.repeat_hit_warning(targetCell) if targetCell.fired_upon?
     targetCell.fire_upon
     @p1_shot_cell = targetCell
   end
