@@ -39,6 +39,10 @@ class Messages
     "Invalid input."
   end
 
+  def self.repeat_hit_warning cell
+    "*** WARNING FIRED ON #{cell.coordinate} PREVIOUSLY ***"
+  end
+
   def self.end_game(winner)
     if winner.is_computer
       "I won! I'm the AI ruler of the world!"
