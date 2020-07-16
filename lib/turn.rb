@@ -8,10 +8,10 @@ class Turn
   end
 
   def human_shot
-    p Messages.enter_coord_msg
+    puts Messages.enter_coord_msg
     input = gets.chomp.upcase
     while (!@player2.board.valid_coordinates?(input))
-      p Messages.not_valid_coord_msg
+      puts Messages.not_valid_coord_msg
       input = gets.chomp.upcase
     end
     targetCell = @player2.board.cells[input]
